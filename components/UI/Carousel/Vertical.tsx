@@ -13,6 +13,7 @@ export interface CarouselVerticalProps {
   time?: number;
   infinite?: boolean;
   autoPlay?: boolean;
+  hasArrow?: boolean;
   hasManualStop?: boolean;
   upButtonIcon?: React.ReactNode | React.ReactNode[];
   downButtonIcon?: React.ReactNode | React.ReactNode[];
@@ -32,6 +33,7 @@ const CarouselVertical: React.ForwardRefRenderFunction<HTMLDivElement, CarouselV
     time = 3000,
     infinite,
     autoPlay,
+    hasArrow = true,
     hasManualStop,
     upButtonIcon = <ArrowUp size={30} />,
     downButtonIcon = <ArrowDown size={30} />,
@@ -189,18 +191,32 @@ const CarouselVertical: React.ForwardRefRenderFunction<HTMLDivElement, CarouselV
   const renderDots = () => {
     return items.map((item, idx) => {
       const dotActiveClassName = slidePos === idx ? "dots-item-active" : "";
-      return <div key={item.id} className={`dots-item ${dotActiveClassName}`} onClick={() => jumpToSlide(idx)} />;
+      return (
+        <div key={item.id} className={`dots-item ${dotActiveClassName}`} onClick={() => jumpToSlide(idx)} />
+      );
     });
   };
 
   return (
     <div ref={ref} style={style} className={`carousel carousel-vertical ${modeClassName} ${rootClassName}`}>
-      <button disabled={prevBtnDisabled} className={`carousel-action ${prevBtnDisabledClassName}`} onClick={onPrev}>
-        {upButtonIcon}
-      </button>
-      <button disabled={nextBtnDisabled} className={`carousel-action ${nextBtnDisabledClassName}`} onClick={onNext}>
-        {downButtonIcon}
-      </button>
+      {hasArrow && (
+        <button
+          disabled={prevBtnDisabled}
+          className={`carousel-action ${prevBtnDisabledClassName}`}
+          onClick={onPrev}
+        >
+          {upButtonIcon}
+        </button>
+      )}
+      {hasArrow && (
+        <button
+          disabled={nextBtnDisabled}
+          className={`carousel-action ${nextBtnDisabledClassName}`}
+          onClick={onNext}
+        >
+          {downButtonIcon}
+        </button>
+      )}
       <div
         id="carouselView"
         className="carousel-view"

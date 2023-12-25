@@ -17,7 +17,7 @@ const HeaderTop: React.FC<HeaderTopProps> = ({ lang }) => {
   return (
     <Row rootClassName="header-top" justify="between" align="middle">
       <Col>
-        <Link href="/" className="top-about">
+        <Link href="/about" className="top-about">
           {lang.common.menu.about}
         </Link>
       </Col>

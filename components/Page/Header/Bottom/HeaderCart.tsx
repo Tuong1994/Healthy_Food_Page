@@ -2,7 +2,7 @@ import React from "react";
 import { UI } from "@/components";
 import { HiShoppingCart } from "react-icons/hi";
 import { Lang } from "@/common/type";
-import { useClickOutside } from "@/hooks";
+import { useClickOutside, useRender } from "@/hooks";
 import Link from "next/link";
 
 const { Avatar, Button, Space, Image, Typography } = UI;
@@ -18,6 +18,8 @@ const HeaderCart: React.FC<HeaderCartProps> = ({ lang }) => {
 
   const cartRef = React.useRef<HTMLDivElement>(null);
 
+  const render = useRender(open);
+
   useClickOutside(cartRef, setOpen);
 
   const dropdownClassName = open ? "cart-dropdown-active" : "";
@@ -28,7 +30,7 @@ const HeaderCart: React.FC<HeaderCartProps> = ({ lang }) => {
     return [...Array(5)].map((_, idx) => (
       <div className="inner-item" key={idx}>
         <Space>
-          <Image size={60} src="/default-image.jpg" alt="product" />
+          <Image imgWidth={60} imgHeight={60} src="/default-image.jpg" alt="product" />
           <div>
             <Paragraphy rootClassName="item-name">Product name</Paragraphy>
             <Space size={80}>
@@ -48,15 +50,17 @@ const HeaderCart: React.FC<HeaderCartProps> = ({ lang }) => {
         <HiShoppingCart size={20} />
       </Avatar>
 
-      <div className={`cart-dropdown ${dropdownClassName}`}>
-        <div className="dropdown-inner">{renderItems()}</div>
-        <div className="dropdown-action">
-          <span>$14.000.000</span>
-          <Button sizes="sm" color="green">
-            <Link href="/">{lang.pageComponent.header.cart}</Link>
-          </Button>
+      {render && (
+        <div className={`cart-dropdown ${dropdownClassName}`}>
+          <div className="dropdown-inner">{renderItems()}</div>
+          <div className="dropdown-action">
+            <span>$14.000.000</span>
+            <Button sizes="sm" color="green">
+              <Link href="/">{lang.pageComponent.header.cart}</Link>
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

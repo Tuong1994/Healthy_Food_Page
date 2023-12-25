@@ -139,9 +139,11 @@
     }
     @include respond(mdTablet) {
       padding: $p-1;
-      box-shadow: unset;
       background: $bg-green;
     }
+  }
+  @include respond(mdTablet) {
+    box-shadow: none;
   }
 }
 

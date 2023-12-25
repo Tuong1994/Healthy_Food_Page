@@ -9,11 +9,11 @@
   font-family: "Poppins", sans-serif;
   font-weight: $font-regular;
   &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 1rem;
+    height: 1rem;
   }
   &::-webkit-scrollbar-thumb {
-    background: $bg-gray;
+    background: $bg-deep-gray;
   }
   &::-webkit-scrollbar-track {
     background: $bg-slate;
@@ -36,4 +36,16 @@ a {
 input,
 textarea {
   outline: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }

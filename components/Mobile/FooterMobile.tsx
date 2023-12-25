@@ -3,18 +3,15 @@
 import React from "react";
 import { HiShoppingBag, HiShoppingCart, HiHeart, HiUser } from "react-icons/hi";
 import { usePathname } from "next/navigation";
-import { useViewpoint } from "@/hooks";
 import Link from "next/link";
 import useLangStore from "@/store/LangStore";
 
-interface FooterMenuProps {}
+interface FooterMobileProps {}
 
 const iconSize = 22;
 
-const FooterMenu: React.FC<FooterMenuProps> = () => {
+const FooterMobile: React.FC<FooterMobileProps> = () => {
   const lang = useLangStore((state) => state.lang);
-
-  const { isPhone, isTablet } = useViewpoint();
 
   const pathname = usePathname();
 
@@ -31,13 +28,13 @@ const FooterMenu: React.FC<FooterMenuProps> = () => {
   const renderItems = () => {
     const itemWidth = `calc(100% / ${items.length})`;
     return items.map((item) => {
-      const activeClassName = item.path === pathname ? "menu-item-active" : "";
+      const activeClassName = item.path === pathname ? "mobile-item-active" : "";
       return (
         <Link
           href={item.path}
           key={item.id}
           style={{ width: itemWidth }}
-          className={`menu-item ${activeClassName}`}
+          className={`mobile-item ${activeClassName}`}
         >
           {item.icon}
           <span>{item.label}</span>
@@ -46,7 +43,7 @@ const FooterMenu: React.FC<FooterMenuProps> = () => {
     });
   };
 
-  return <div className="footer-menu">{renderItems()}</div>;
+  return <div className="footer-mobile">{renderItems()}</div>;
 };
 
-export default FooterMenu;
+export default FooterMobile;

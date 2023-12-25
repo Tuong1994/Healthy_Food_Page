@@ -1,0 +1,27 @@
+.category-mobile {
+  display: none;
+  padding: $p-1;
+  .mobile-wrap {
+    overflow-y: hidden;
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+      height: 0.5rem;
+    }
+    .wrap-inner {
+      display: flex;
+      justify-content: space-between;
+      .inner-item {
+        min-width: max-content;
+        padding: $p-1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+    }
+  }
+  @include respond(mdTablet) {
+    display: block;
+  }
+}

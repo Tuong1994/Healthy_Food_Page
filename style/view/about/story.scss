@@ -1,0 +1,12 @@
+.about-story {
+  .story-title {
+    font-size: $text-2xxl;
+  }
+  .story-content {
+    margin-bottom: $m-2;
+    line-height: $h-2 + 0.5;
+  }
+  .story-author {
+    margin-bottom: $m-1 - 0.5;
+  }
+}

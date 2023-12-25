@@ -1,0 +1,6 @@
+.main {
+  padding-top: $p-1 * 9;
+  @include respond(mdTablet) {
+    padding: $p-1 * 10 0;
+  }
+}
