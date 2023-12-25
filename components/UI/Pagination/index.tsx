@@ -8,8 +8,8 @@ import {
   HiOutlineChevronRight as ArrowRight,
 } from "react-icons/hi2";
 import { ComponentColor, ComponentShape } from "@/common/type";
+import { GridAppContext } from "../Grid/Context";
 import usePagination from "./usePagination";
-import useViewpoint from "@/hooks/useViewpoint";
 
 export type PageType = "first" | "prev" | "page" | "next" | "last";
 
@@ -47,7 +47,7 @@ const Pagination: React.ForwardRefRenderFunction<HTMLDivElement, PaginationProps
   },
   ref
 ) => {
-  const { isPhone } = useViewpoint();
+  const { isPhone } = React.useContext(GridAppContext);
 
   const [currentPage, setCurrentPage] = React.useState<number>(1);
 

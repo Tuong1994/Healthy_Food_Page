@@ -24,7 +24,7 @@ const HomeCategory: React.FC<HomeCategoryProps> = () => {
           </Title>
         </Col>
         <Col>
-          <Link href="/" className="category-link">
+          <Link href="/product/list" className="category-link">
             {lang.home.link}
           </Link>
         </Col>
@@ -32,7 +32,7 @@ const HomeCategory: React.FC<HomeCategoryProps> = () => {
 
       <div className="category-products">
         {[...Array(10)].map((_, idx) => (
-          <Product key={idx} width={200} />
+          <Product key={idx} cardWidth={200} />
         ))}
       </div>
     </div>

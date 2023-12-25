@@ -38,7 +38,7 @@ const HeaderBottom: React.FC<HeaderBottomProps> = ({ lang }) => {
           <HeaderCategory lang={lang} />
         </Col>
 
-        <Col xs={24} md={24} span={10}>
+        <Col xs={24} md={24} span={9}>
           <HeaderSearch />
         </Col>
 
@@ -50,7 +50,7 @@ const HeaderBottom: React.FC<HeaderBottomProps> = ({ lang }) => {
           <HeaderCart lang={lang} />
         </Col>
 
-        <Col xs={0} md={0} span={5}>
+        <Col xs={0} md={0} span={6}>
           <HeaderAuth lang={lang} />
         </Col>
       </Row>
