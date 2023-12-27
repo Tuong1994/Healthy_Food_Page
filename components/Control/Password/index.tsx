@@ -7,8 +7,7 @@ import { ControlColor, ControlShape, InputValue } from "../type";
 import { ComponentSize } from "@/common/type";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
-import useLangStore from "@/store/LangStore";
-import { lang } from "moment";
+import useLang from "@/hooks/useLang";
 
 export interface InputPasswordProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rootClassName?: string;
@@ -47,7 +46,7 @@ const InputPassword: React.ForwardRefRenderFunction<HTMLInputElement, InputPassw
   },
   ref
 ) => {
-  const lang = useLangStore((state) => state.lang);
+  const { lang } = useLang();
 
   const rhfMethods = useFormContext();
 

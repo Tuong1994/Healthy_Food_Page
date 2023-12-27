@@ -6,7 +6,7 @@ const { Section, Button, Image, Space, UList, Grid, Typography } = UI;
 
 const { Row, Col } = Grid;
 
-const { Title, Paragraphy } = Typography;
+const { Title, Paragraph } = Typography;
 
 const { List, ListItem } = UList;
 
@@ -22,30 +22,30 @@ const AboutBanner: React.FC<AboutBannerProps> = ({ lang }) => {
           <Title weight={700} rootClassName="banner-title">
             {lang.about.banner.title}
           </Title>
-          <Paragraphy size={17} weight={300} align="justify">
+          <Paragraph size={17} weight={300} align="justify">
             {lang.about.banner.content}
-          </Paragraphy>
+          </Paragraph>
           <Button color="green" sizes="lg" rootClassName="banner-btn">
             {lang.about.banner.action}
           </Button>
           <List>
             <ListItem>
               <Space>
-                <Paragraphy strong size={18}>
+                <Paragraph strong size={18}>
                   {lang.about.banner.delivery}
-                </Paragraphy>
-                <Paragraphy italic>({lang.about.banner.term})</Paragraphy>
+                </Paragraph>
+                <Paragraph italic>({lang.about.banner.term})</Paragraph>
               </Space>
             </ListItem>
             <ListItem>
-              <Paragraphy strong size={18}>
+              <Paragraph strong size={18}>
                 {lang.about.banner.fresh}
-              </Paragraphy>
+              </Paragraph>
             </ListItem>
             <ListItem>
-              <Paragraphy strong size={18}>
+              <Paragraph strong size={18}>
                 {lang.about.banner.deal}
-              </Paragraphy>
+              </Paragraph>
             </ListItem>
           </List>
         </Col>

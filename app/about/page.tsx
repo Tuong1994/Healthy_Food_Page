@@ -7,10 +7,10 @@ import AboutGuarantee from "./AboutGuarantee";
 import AboutBlog from "./AboutBlog";
 import AboutStory from "./AboutStory";
 import AboutCategory from "./AboutCategory";
-import useLangStore from "@/store/LangStore";
+import useLang from "@/hooks/useLang";
 
 const About: NextPage = () => {
-  const lang = useLangStore((state) => state.lang);
+  const { lang } = useLang();
 
   return (
     <div className="about">

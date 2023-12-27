@@ -1,8 +1,8 @@
 import React from "react";
 import { UI } from "@/components";
 import Link from "next/link";
-import Product from "@/components/Page/Product";
-import useLangStore from "@/store/LangStore";
+import ProductCard from "@/components/Page/ProductCard";
+import useLang from "@/hooks/useLang";
 
 const { Typography, Grid } = UI;
 
@@ -13,7 +13,7 @@ const { Row, Col } = Grid;
 interface HomeCategoryProps {}
 
 const HomeCategory: React.FC<HomeCategoryProps> = () => {
-  const lang = useLangStore((state) => state.lang);
+  const { lang } = useLang();
 
   return (
     <div className="home-category">
@@ -32,7 +32,7 @@ const HomeCategory: React.FC<HomeCategoryProps> = () => {
 
       <div className="category-products">
         {[...Array(10)].map((_, idx) => (
-          <Product key={idx} cardWidth={200} />
+          <ProductCard key={idx} cardWidth={200} />
         ))}
       </div>
     </div>

@@ -9,7 +9,7 @@ import SelectControl from "./Control";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
 import SelectOption from "./Option";
-import useLangStore from "@/store/LangStore";
+import useLang from "@/hooks/useLang";
 
 export interface SelectProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rootClassName?: string;
@@ -62,7 +62,7 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
   },
   ref
 ) => {
-  const lang = useLangStore((state) => state.lang);
+  const { lang } = useLang();
 
   const rhfMethods = useFormContext();
 

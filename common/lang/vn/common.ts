@@ -16,6 +16,7 @@ const common_vn = {
       password: "Mật khẩu",
       firstName: "Tên",
       lastName: "Họ",
+      fullName: "Họ và Tên",
       phone: "Điện thoại",
       email: "Email",
       gender: "Giới tính",
@@ -25,6 +26,12 @@ const common_vn = {
       district: "Quận/Huyện",
       ward: "Phường/Xã",
       note: "Ghi chú",
+      unit: "Đơn vị",
+      status: "Trạng thái",
+      origin: "Xuất xứ",
+      inventory: "Hàng tồn kho",
+      inventoryStatus: "Tình trạng tồn kho",
+      supplier: "Nhà cung cấp",
     },
     placeholder: {
       type: "Nhập",
@@ -35,8 +42,14 @@ const common_vn = {
   unit: {
     quanity: "sl",
   },
+  status: {
+    inStock: "Còn hàng",
+    outOfStock: "Hết hàng",
+    new: "Mới",
+  },
   actions: {
     save: "Lưu",
+    ok: 'Ok',
     cancel: "Hủy",
   },
   table: {

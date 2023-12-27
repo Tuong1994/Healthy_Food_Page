@@ -4,7 +4,7 @@ import { UI } from "@/components";
 
 const { Section, Grid, Typography } = UI;
 
-const { Title, Paragraphy } = Typography;
+const { Title, Paragraph } = Typography;
 
 const { Row, Col } = Grid;
 
@@ -20,28 +20,28 @@ const AboutGuarantee: React.FC<AboutGuaranteeProps> = ({ lang }) => {
       </Title>
       <Row justify="evenly" gutters={[50, 10]}>
         <Col xs={24} span={8}>
-          <Paragraphy variant="success" weight={700} size={50} align="center">
+          <Paragraph variant="success" weight={700} size={50} align="center">
             99.5%
-          </Paragraphy>
-          <Paragraphy size={18} align="center" rootClassName="guarantee-content">
+          </Paragraph>
+          <Paragraph size={18} align="center" rootClassName="guarantee-content">
             {lang.about.guarantee.content_1}
-          </Paragraphy>
+          </Paragraph>
         </Col>
         <Col xs={24} span={8}>
-          <Paragraphy variant="success" weight={700} size={50} align="center">
+          <Paragraph variant="success" weight={700} size={50} align="center">
             99.0%
-          </Paragraphy>
-          <Paragraphy size={18} align="center" rootClassName="guarantee-content">
+          </Paragraph>
+          <Paragraph size={18} align="center" rootClassName="guarantee-content">
             {lang.about.guarantee.content_2}
-          </Paragraphy>
+          </Paragraph>
         </Col>
         <Col xs={24} span={8}>
-          <Paragraphy variant="success" weight={700} size={50} align="center">
+          <Paragraph variant="success" weight={700} size={50} align="center">
             98.0%
-          </Paragraphy>
-          <Paragraphy size={18} align="center" rootClassName="guarantee-content">
+          </Paragraph>
+          <Paragraph size={18} align="center" rootClassName="guarantee-content">
             {lang.about.guarantee.content_3}
-          </Paragraphy>
+          </Paragraph>
         </Col>
       </Row>
     </Section>

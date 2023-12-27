@@ -1,10 +1,10 @@
 const common_en = {
   menu: {
     home: "Home",
-    mart: 'Mart',
-    cart: 'Cart',
-    favorite: 'Favorite',
-    account: 'Account',
+    mart: "Mart",
+    cart: "Cart",
+    favorite: "Favorite",
+    account: "Account",
     about: "About Healthy Food",
     payment: "Payment Methods",
     delivery: "Delivery Policy",
@@ -16,6 +16,7 @@ const common_en = {
       password: "Password",
       firstName: "First name",
       lastName: "Last name",
+      fullName: "Full name",
       phone: "Phone",
       email: "Email",
       gender: "Gender",
@@ -25,6 +26,12 @@ const common_en = {
       district: "District",
       ward: "Ward",
       note: "Note",
+      unit: "Unit",
+      status: "Status",
+      origin: "Origin",
+      inventory: "Inventory",
+      inventoryStatus: "Inventory status",
+      supplier: "Supplier",
     },
     placeholder: {
       type: "Type",
@@ -33,10 +40,16 @@ const common_en = {
     },
   },
   unit: {
-    quanity: 'qty',
+    quanity: "qty",
+  },
+  status: {
+    inStock: "In stock",
+    outOfStock: "Out of stock",
+    new: "New",
   },
   actions: {
     save: "Save",
+    ok: "Ok",
     cancel: "Cancel",
   },
   table: {

@@ -7,7 +7,7 @@ const { Breadcrumb, Typography, Grid } = UI;
 
 const { Row, Col } = Grid;
 
-const { Paragraphy } = Typography;
+const { Paragraph } = Typography;
 
 interface FooterTopProps {}
 
@@ -24,7 +24,7 @@ const FooterTop: React.FC<FooterTopProps> = () => {
           }));
           return (
             <Col key={category.id} lg={12} span={6}>
-              <Paragraphy strong>{category.name}</Paragraphy>
+              <Paragraph strong>{category.name}</Paragraph>
               <Breadcrumb items={items} separator="|" style={{ marginTop: "10px" }} />
             </Col>
           );

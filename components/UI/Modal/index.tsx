@@ -1,11 +1,10 @@
-"use client";
-
 import React from "react";
 import { HiXMark } from "react-icons/hi2";
-import { ComponentSize } from "@/common/type";
+import { ComponentColor, ComponentSize } from "@/common/type";
+import { useOverflow, useRender } from "@/hooks";
 import Portal from "@/components/Portal";
 import Button, { ButtonProps } from "../Button";
-import useRender from "@/hooks/useRender";
+import useLang from "@/hooks/useLang";
 
 export interface ModalProps {
   rootClassName?: string;
@@ -24,6 +23,7 @@ export interface ModalProps {
   backdropClose?: boolean;
   open?: boolean;
   sizes?: ComponentSize;
+  color?: ComponentColor;
   okButtonProps?: ButtonProps;
   cancelButtonProps?: ButtonProps;
   okButtonTitle?: React.ReactNode | React.ReactNode[];
@@ -45,13 +45,14 @@ const Modal: React.ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (
     head = "Modal",
     children,
     sizes = "md",
+    color = "blue",
     hasHead = true,
     hasFoot = true,
     hasCloseIcon = true,
     backdropClose = true,
     open = false,
-    okButtonTitle = "Ok",
-    cancelButtonTitle = "Cancel",
+    okButtonTitle,
+    cancelButtonTitle,
     okButtonProps,
     cancelButtonProps,
     onOk,
@@ -59,15 +60,23 @@ const Modal: React.ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (
   },
   ref
 ) => {
+  useOverflow(open);
+
   const render = useRender(open);
 
+  const { lang } = useLang();
+
   const sizeClassName = `modal-${sizes}`;
+
+  const colorClassName = `modal-${color}`;
 
   const backdropActiveClassName = open ? "modal-backdrop-active" : "";
 
   const modalActiveClassName = open ? "modal-active" : "";
 
-  const okActionProps: ButtonProps = { ...okButtonProps, color: "blue" };
+  const okButtonColor = color === "white" || color === "gray" ? "blue" : okButtonProps?.color ?? color;
+
+  const okActionProps: ButtonProps = { ...okButtonProps, color: okButtonColor };
 
   return (
     <Portal>
@@ -81,7 +90,7 @@ const Modal: React.ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (
           <div
             ref={ref}
             style={style}
-            className={`modal ${sizeClassName} ${modalActiveClassName} ${rootClassName}`}
+            className={`modal ${colorClassName} ${sizeClassName} ${modalActiveClassName} ${rootClassName}`}
           >
             {hasHead && (
               <div style={headStyle} className={`modal-head ${headClassName}`}>
@@ -97,10 +106,10 @@ const Modal: React.ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (
             {hasFoot && (
               <div style={footStyle} className={`modal-foot ${footClassName}`}>
                 <Button {...cancelButtonProps} onClick={onCancel}>
-                  {cancelButtonTitle}
+                  {cancelButtonTitle ?? lang.common.actions.cancel}
                 </Button>
                 <Button {...okActionProps} onClick={onOk}>
-                  {okButtonTitle}
+                  {okButtonTitle ?? lang.common.actions.ok}
                 </Button>
               </div>
             )}

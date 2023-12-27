@@ -76,9 +76,9 @@ const Image: React.ForwardRefRenderFunction<HTMLImageElement, ImageProps> = (
     if (imgWidth && !imgHeight) return { width: imgWidth, height: "auto" };
     if (imgHeight && !imgWidth) return { width: "auto", height: imgHeight };
     if (imgWidth && imgHeight) {
-      if (typeof imgWidth === "number" && typeof imgHeight === "string") {
-        return { width: `${imgWidth}px`, height: imgHeight };
-      } else return { width: imgWidth, height: `${imgHeight}px` };
+      const width = typeof imgWidth === "string" ? imgWidth : `${imgWidth}px`;
+      const height = typeof imgHeight === "string" ? imgHeight : `${imgHeight}px`;
+      return { width, height };
     }
     return { width: "auto", height: "auto" };
   };

@@ -9,7 +9,7 @@ const { Section, Image, Carousel, Grid, Typography } = UI;
 
 const { Row, Col } = Grid;
 
-const { Title, Paragraphy } = Typography;
+const { Title, Paragraph } = Typography;
 
 const { Horizontal } = Carousel;
 
@@ -25,7 +25,7 @@ const AboutCategory: React.FC<AboutCategoryProps> = ({ lang }) => {
       <Col key={subcategory.id} xs={12} md={8} lg={6} span={4}>
         <Link href="/about" className="item-inner">
           <Image src={subcategory.path} imgWidth={150} />
-          <Paragraphy rootClassName="inner-name">{subcategory.name}</Paragraphy>
+          <Paragraph rootClassName="inner-name">{subcategory.name}</Paragraph>
         </Link>
       </Col>
     ));
@@ -55,9 +55,9 @@ const AboutCategory: React.FC<AboutCategoryProps> = ({ lang }) => {
       <Title align="center" weight={700} rootClassName="category-title">
         {lang.about.category.title}
       </Title>
-      <Paragraphy align="center" rootClassName="category-content" size={18} weight={400}>
+      <Paragraph align="center" rootClassName="category-content" size={18} weight={400}>
         {lang.about.category.content}
-      </Paragraphy>
+      </Paragraph>
       <Horizontal slideId="category" hasArrow={false} items={slides} rootClassName="category-carousel" />
     </Section>
   );

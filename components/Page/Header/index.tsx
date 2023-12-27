@@ -3,12 +3,12 @@
 import React from "react";
 import HeaderBottom from "./Bottom";
 import HeaderTop from "./Top";
-import useLangStore from "@/store/LangStore";
+import useLang from "@/hooks/useLang";
 
 interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = () => {
-  const lang = useLangStore((state) => state.lang);
+  const { lang } = useLang();
 
   return (
     <div className="header">

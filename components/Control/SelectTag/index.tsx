@@ -9,7 +9,7 @@ import SelectTagControl from "./Control";
 import SelectOption from "./Option";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
-import useLangStore from "@/store/LangStore";
+import useLang from "@/hooks/useLang";
 
 export interface SelectTagProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rootClassName?: string;
@@ -62,7 +62,7 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
   },
   ref
 ) => {
-  const lang = useLangStore((state) => state.lang);
+  const { lang } = useLang();
 
   const rhfMethods = useFormContext();
 

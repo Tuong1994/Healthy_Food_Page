@@ -1,8 +1,8 @@
 import React from "react";
 import { UI } from "@/components";
-import useLangStore from "@/store/LangStore";
-import Link from "next/link";
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
+import Link from "next/link";
+import useLang from "@/hooks/useLang";
 
 const { Grid, UList, Typography, Space, Image } = UI;
 
@@ -10,14 +10,14 @@ const { Row, Col } = Grid;
 
 const { List, ListItem } = UList;
 
-const { Paragraphy } = Typography;
+const { Paragraph } = Typography;
 
 interface FooterBottomProps {}
 
 const ICON_SIZE = 20;
 
 const FooterBottom: React.FC<FooterBottomProps> = () => {
-  const lang = useLangStore((state) => state.lang);
+  const { lang } = useLang();
 
   return (
     <div className="footer-bottom">
@@ -37,13 +37,13 @@ const FooterBottom: React.FC<FooterBottomProps> = () => {
             <ListItem>
               <Space>
                 <span>{lang.common.form.label.phone}:</span>
-                <Paragraphy strong>028 3975 3186</Paragraphy>
+                <Paragraph strong>028 3975 3186</Paragraph>
               </Space>
             </ListItem>
             <ListItem>
               <Space>
                 <span>{lang.common.form.label.email}:</span>
-                <Paragraphy strong>info@heafood.vn</Paragraphy>
+                <Paragraph strong>info@heafood.vn</Paragraph>
               </Space>
             </ListItem>
             <ListItem rootClassName="list-link">
@@ -79,12 +79,12 @@ const FooterBottom: React.FC<FooterBottomProps> = () => {
         </Col>
       </Row>
 
-      <Paragraphy align="center" variant="secondary">
+      <Paragraph align="center" variant="secondary">
         {lang.pageComponent.footer.content}
-      </Paragraphy>
-      <Paragraphy align="center" variant="secondary">
+      </Paragraph>
+      <Paragraph align="center" variant="secondary">
         {lang.common.form.label.address}: {lang.pageComponent.footer.address}
-      </Paragraphy>
+      </Paragraph>
     </div>
   );
 };

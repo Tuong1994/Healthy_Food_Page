@@ -7,7 +7,7 @@ import { ControlColor, ControlShape, InputValue } from "../type";
 import { ComponentSize } from "@/common/type";
 import FormItemContext from "../Form/FormItemContext";
 import FormContext from "../Form/FormContext";
-import useLangStore from "@/store/LangStore";
+import useLang from "@/hooks/useLang";
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rootClassName?: string;
@@ -46,7 +46,7 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   },
   ref
 ) => {
-  const lang = useLangStore((state) => state.lang);
+  const { lang } = useLang();
 
   const rhfMethods = useFormContext();
 

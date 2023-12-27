@@ -6,7 +6,7 @@ const { Section, Image, Grid, Typography } = UI;
 
 const { Row, Col } = Grid;
 
-const { Title, Paragraphy } = Typography;
+const { Title, Paragraph } = Typography;
 
 interface AboutBlogProps {
   lang: Lang;
@@ -21,18 +21,18 @@ const AboutBlog: React.FC<AboutBlogProps> = ({ lang }) => {
         </Col>
         <Col xs={24} md={24} lg={13} span={13}>
           <Title weight={600}>{lang.about.blogs.title_1}</Title>
-          <Paragraphy size={16} align="justify" rootClassName="group-content">
+          <Paragraph size={16} align="justify" lineHeight={30}>
             {lang.about.blogs.content_1}
-          </Paragraphy>
+          </Paragraph>
         </Col>
       </Row>
 
       <Row gutters={[30, 10]} justify="between" rootClassName="blog-group">
         <Col xs={24} md={24} lg={13} span={13}>
           <Title weight={600}>{lang.about.blogs.title_2}</Title>
-          <Paragraphy size={16} align="justify" rootClassName="group-content">
+          <Paragraph size={16} align="justify" lineHeight={30}>
             {lang.about.blogs.content_2}
-          </Paragraphy>
+          </Paragraph>
         </Col>
         <Col xs={24} md={24} lg={11} span={10}>
           <Image src="/blog/laptop-no-background.webp" imgWidth="100%" />
@@ -45,9 +45,9 @@ const AboutBlog: React.FC<AboutBlogProps> = ({ lang }) => {
         </Col>
         <Col xs={24} md={24} lg={13} span={13}>
           <Title weight={600}>{lang.about.blogs.title_3}</Title>
-          <Paragraphy size={16} align="justify" rootClassName="group-content">
+          <Paragraph size={16} align="justify" lineHeight={30}>
             {lang.about.blogs.content_3}
-          </Paragraphy>
+          </Paragraph>
         </Col>
       </Row>
     </Section>

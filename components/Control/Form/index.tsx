@@ -5,6 +5,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { ComponentSize } from "@/common/type";
 import { ControlColor, ControlShape } from "../type";
 import FormContext, { FormContextState } from "./FormContext";
+import useFormStore from "./FormStore";
 
 export interface FormProps<M> extends React.FormHTMLAttributes<HTMLFormElement> {
   initialData: M;
@@ -27,11 +28,15 @@ const Form = <M extends object>(
   }: FormProps<M>,
   ref: React.ForwardedRef<HTMLFormElement>
 ) => {
+  const setSubmit = useFormStore((state) => state.setSubmit);
+
   const rhfMethods = useForm<M>({ values: initialData, mode: "all" });
 
   const formContextState: FormContextState = { isForm: true, color, sizes, shape };
 
   const onSubmit = (formData: M) => onFinish?.(formData);
+
+  React.useEffect(() => setSubmit(rhfMethods.handleSubmit(onSubmit)), []);
 
   return (
     <FormProvider {...rhfMethods}>

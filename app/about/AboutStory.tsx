@@ -6,7 +6,7 @@ const { Section, Space, Avatar, Image, Divider, Grid, Typography } = UI;
 
 const { Row, Col } = Grid;
 
-const { Title, Paragraphy } = Typography;
+const { Title, Paragraph } = Typography;
 
 interface AboutStoryProps {
   lang: Lang;
@@ -61,18 +61,18 @@ const AboutStory: React.FC<AboutStoryProps> = ({ lang }) => {
   const renderStory = () => {
     return stories.map((story) => (
       <Col key={story.id} xs={24} md={12} lg={12} span={8}>
-        <Paragraphy size={16} align="justify" rootClassName="story-content">
+        <Paragraph size={16} align="justify" rootClassName="story-content">
           {story.content}
-        </Paragraphy>
+        </Paragraph>
         <Space align="middle">
           <Avatar size={60}>
             <Image src={story.img} imgWidth="100%" />
           </Avatar>
           <div>
-            <Paragraphy strong size={18} rootClassName="story-author">
+            <Paragraph strong size={18} rootClassName="story-author">
               {story.author}
-            </Paragraphy>
-            <Paragraphy variant="secondary" size={13}>{story.position}</Paragraphy>
+            </Paragraph>
+            <Paragraph variant="secondary" size={13}>{story.position}</Paragraph>
           </div>
         </Space>
       </Col>

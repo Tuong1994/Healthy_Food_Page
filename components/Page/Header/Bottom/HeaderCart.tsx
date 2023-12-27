@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const { Avatar, Button, Space, Image, Typography } = UI;
 
-const { Paragraphy } = Typography;
+const { Paragraph } = Typography;
 
 interface HeaderCartProps {
   lang: Lang;
@@ -32,11 +32,11 @@ const HeaderCart: React.FC<HeaderCartProps> = ({ lang }) => {
         <Space>
           <Image imgWidth={60} imgHeight={60} src="/default-image.jpg" alt="product" />
           <div>
-            <Paragraphy rootClassName="item-name">Product name</Paragraphy>
+            <Paragraph rootClassName="item-name">Product name</Paragraph>
             <Space size={80}>
-              <Paragraphy size={16} strong>
+              <Paragraph size={16} strong>
                 $150.000
-              </Paragraphy>
+              </Paragraph>
               <span>{lang.common.unit.quanity}. 5</span>
             </Space>
           </div>
