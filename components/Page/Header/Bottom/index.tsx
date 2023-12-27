@@ -9,6 +9,9 @@ import HeaderAuth from "./HeaderAuth";
 import HeaderMobile from "./HeaderMobile";
 import HeaderLikes from "./HeaderLikes";
 import HeaderCategory from "./HeaderCategory";
+import url from "@/common/constant/url";
+
+const { HOME } = url;
 
 const { Grid, Layout } = UI;
 
@@ -25,7 +28,7 @@ const HeaderBottom: React.FC<HeaderBottomProps> = ({ lang }) => {
     <Head rootClassName="header-bottom">
       <Row align="middle" justify="between">
         <Col>
-          <Link href="/">
+          <Link href={HOME}>
             <Logo />
           </Link>
         </Col>

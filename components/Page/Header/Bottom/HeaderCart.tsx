@@ -4,6 +4,9 @@ import { HiShoppingCart } from "react-icons/hi";
 import { Lang } from "@/common/type";
 import { useClickOutside, useRender } from "@/hooks";
 import Link from "next/link";
+import url from "@/common/constant/url";
+
+const { CART } = url;
 
 const { Avatar, Button, Space, Image, Typography } = UI;
 
@@ -56,7 +59,7 @@ const HeaderCart: React.FC<HeaderCartProps> = ({ lang }) => {
           <div className="dropdown-action">
             <span>$14.000.000</span>
             <Button sizes="sm" color="green">
-              <Link href="/">{lang.pageComponent.header.cart}</Link>
+              <Link href={CART}>{lang.pageComponent.header.cart}</Link>
             </Button>
           </div>
         </div>

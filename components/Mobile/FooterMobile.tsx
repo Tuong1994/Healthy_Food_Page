@@ -4,23 +4,29 @@ import React from "react";
 import { HiShoppingBag, HiShoppingCart, HiHeart, HiUser } from "react-icons/hi";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import useLangStore from "@/store/LangStore";
+import useLang from "@/hooks/useLang";
+import useNotDisplay from "@/hooks/useNotDisplay";
+import url from "@/common/constant/url";
+
+const { HOME, CART, FAVORITE, AUTH_SIGN_IN } = url;
+
+const ICON_SIZE = 22;
 
 interface FooterMobileProps {}
 
-const iconSize = 22;
-
 const FooterMobile: React.FC<FooterMobileProps> = () => {
-  const lang = useLangStore((state) => state.lang);
+  const { lang } = useLang();
 
   const pathname = usePathname();
 
+  const notDisplay = useNotDisplay();
+
   const items = React.useMemo(
     () => [
-      { id: "1", label: lang.common.menu.mart, icon: <HiShoppingBag size={iconSize} />, path: "/" },
-      { id: "2", label: lang.common.menu.cart, icon: <HiShoppingCart size={iconSize} />, path: "/cart" },
-      { id: "3", label: lang.common.menu.favorite, icon: <HiHeart size={iconSize} />, path: "/favorite" },
-      { id: "4", label: lang.common.menu.account, icon: <HiUser size={iconSize} />, path: "/auth" },
+      { id: "1", label: lang.common.menu.mart, icon: <HiShoppingBag size={ICON_SIZE} />, path: HOME },
+      { id: "2", label: lang.common.menu.cart, icon: <HiShoppingCart size={ICON_SIZE} />, path: CART },
+      { id: "3", label: lang.common.menu.favorite, icon: <HiHeart size={ICON_SIZE} />, path: FAVORITE },
+      { id: "4", label: lang.common.menu.account, icon: <HiUser size={ICON_SIZE} />, path: AUTH_SIGN_IN },
     ],
     [lang]
   );
@@ -42,6 +48,8 @@ const FooterMobile: React.FC<FooterMobileProps> = () => {
       );
     });
   };
+
+  if (notDisplay) return <React.Fragment></React.Fragment>;
 
   return <div className="footer-mobile">{renderItems()}</div>;
 };

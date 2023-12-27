@@ -4,6 +4,9 @@ import { Lang } from "@/common/type";
 import { FaPhone } from "react-icons/fa";
 import Link from "next/link";
 import HeaderTranslate from "./HeaderTranslate";
+import url from "@/common/constant/url";
+
+const { ABOUT } = url;
 
 const { Grid, Space } = UI;
 
@@ -17,7 +20,7 @@ const HeaderTop: React.FC<HeaderTopProps> = ({ lang }) => {
   return (
     <Row rootClassName="header-top" justify="between" align="middle">
       <Col>
-        <Link href="/about" className="top-about">
+        <Link href={ABOUT} className="top-about">
           {lang.common.menu.about}
         </Link>
       </Col>

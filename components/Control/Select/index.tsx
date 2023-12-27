@@ -25,6 +25,7 @@ export interface SelectProps extends React.InputHTMLAttributes<HTMLInputElement>
   sizes?: ComponentSize;
   color?: ControlColor;
   shape?: ControlShape;
+  hasClear?: boolean;
   async?: boolean;
   loading?: boolean;
   total?: number;
@@ -51,6 +52,7 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
     disabled,
     options = [],
     defaultValue,
+    hasClear = true,
     async = false,
     loading = false,
     total = 0,
@@ -122,7 +124,7 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
 
   const controlShape = isRhf ? rhfShape : shape;
 
-  const showClearIcon = Boolean((search || selectedOption) && !controlDisabled);
+  const showClearIcon = Boolean((search || selectedOption) && hasClear && !controlDisabled);
 
   const sizeClassName = `select-${controlSize}`;
 

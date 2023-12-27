@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Header from "@/components/Page/Header";
 import Footer from "@/components/Page/Footer";
+import AppContainer from "@/components/Page/AppContainer";
 import FooterMobile from "@/components/Mobile/FooterMobile";
-import "@/style/main.scss";
 import GridProvider from "@/components/UI/Grid/Provider";
+import "@/style/main.scss";
 
 const poppins = Poppins({
   weight: ["100", "300", "400", "500", "600", "700"],
@@ -23,13 +24,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={poppins.className}>
         <GridProvider>
           <Header />
-          <main className="main">{children}</main>
+          <AppContainer>{children}</AppContainer>
           <Footer />
-        </GridProvider>
 
-        <FooterMobile />
-        
-        <div id="portal"></div>
+          <FooterMobile />
+
+          <div id="portal"></div>
+        </GridProvider>
       </body>
     </html>
   );
