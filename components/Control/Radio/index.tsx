@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React from "react";
 import { useFormContext } from "react-hook-form";
@@ -73,7 +73,8 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (
 
   const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setIsChecked(e.target.checked);
+    const checked = e.target.checked;
+    setIsChecked(checked);
     onCheck?.(value);
   };
 
@@ -86,7 +87,7 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (
     >
       <label className={`radio-group ${errorClassName} ${disabledClassName}`}>
         <input
-          {...rhfMethods.register(rhfName)}
+          {...rhfMethods?.register(rhfName)}
           {...restProps}
           ref={ref}
           value={value}

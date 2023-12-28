@@ -7,6 +7,9 @@
   .card-head,
   .card-body {
     padding: $p-2;
+    @include respond(mdPhone) {
+      padding: $p-2 $p-1;
+    }
   }
   .card-head {
     border-bottom: 0.5px solid $bg-slate;

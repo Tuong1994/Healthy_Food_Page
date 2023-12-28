@@ -1,0 +1,10 @@
+@import "./confirm.scss";
+@import "./payment.scss";
+@import "./empty.scss";
+
+.cart {
+  padding: 0 $p-1 * 8;
+  @include respond(lgTablet) {
+    padding: 0 $p-1;
+  }
+}

@@ -1,8 +1,9 @@
 const common_vn = {
+  company: "Công ty TNHH HEATHY FOOD",
   menu: {
     home: "Trang chủ",
     mart: "Siêu thị",
-    cart: "Giỏ",
+    cart: "Giỏ hàng",
     favorite: "Yêu thích",
     account: "Tài khoản",
     about: "Về Healthy Food",
@@ -48,8 +49,9 @@ const common_vn = {
     new: "Mới",
   },
   actions: {
+    ok: "Ok",
     save: "Lưu",
-    ok: 'Ok',
+    update: "Cập nhật",
     cancel: "Hủy",
   },
   table: {
@@ -60,6 +62,10 @@ const common_vn = {
       gender: "Giới tính",
       birthday: "Ngày sinh",
       address: "Địa chỉ",
+      image: "Hình ảnh",
+      productName: "Tên sản phẩm",
+      quantity: "Số lượng",
+      price: "Đơn giá",
     },
   },
   message: {

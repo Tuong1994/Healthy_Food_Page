@@ -1,12 +1,12 @@
 import React from "react";
-import { HiHeart} from "react-icons/hi";
+import { CgHeart } from "react-icons/cg";
 
 interface HeaderLikesProps {}
 
 const HeaderLikes: React.FC<HeaderLikesProps> = () => {
   return (
     <button className="bottom-likes">
-      <HiHeart size={20} />
+      <CgHeart size={25} />
     </button>
   );
 };

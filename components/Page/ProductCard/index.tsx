@@ -2,11 +2,14 @@
 
 import React from "react";
 import { UI } from "@/components";
+import { GridAppContext } from "@/components/UI/Grid/Context";
 import Link from "next/link";
 import ProductCardImage from "./ProductCardImage";
 import ProductCardControl from "./ProductCardControl";
 import ProductCardLike from "./ProductCardLike";
-import { GridAppContext } from "@/components/UI/Grid/Context";
+import url from "@/common/constant/url";
+
+const { PRODUCT_DETAIL } = url;
 
 const { Card, Typography } = UI;
 
@@ -25,11 +28,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
   cardWidth,
   responsive,
 }) => {
+  const { isPhone } = React.useContext(GridAppContext);
+
   const responsiveClassName = responsive ? "product-card-responsive" : "";
 
   const imageResponsiveClassName = responsive ? "body-image" : "";
-
-  const { isPhone } = React.useContext(GridAppContext);
 
   const cardSize = () => {
     if (!cardWidth) return "unset";
@@ -50,7 +53,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       />
 
       <div className="body-content">
-        <Link href="/product/detail">Product name</Link>
+        <Link href={PRODUCT_DETAIL}>Product name</Link>
         <Paragraph rootClassName="product-card-price" strong size={16}>
           $100,000/kg
         </Paragraph>

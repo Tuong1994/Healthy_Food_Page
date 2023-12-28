@@ -1,12 +1,12 @@
 import React from "react";
 import { UI } from "@/components";
-import { HiShoppingCart } from "react-icons/hi";
 import { Lang } from "@/common/type";
 import { useClickOutside, useRender } from "@/hooks";
+import { CgShoppingCart } from "react-icons/cg";
 import Link from "next/link";
 import url from "@/common/constant/url";
 
-const { CART } = url;
+const { CART, PRODUCT_DETAIL } = url;
 
 const { Avatar, Button, Space, Image, Typography } = UI;
 
@@ -31,7 +31,7 @@ const HeaderCart: React.FC<HeaderCartProps> = ({ lang }) => {
 
   const renderItems = () => {
     return [...Array(5)].map((_, idx) => (
-      <div className="inner-item" key={idx}>
+      <Link href={PRODUCT_DETAIL} className="inner-item" key={idx}>
         <Space>
           <Image imgWidth={60} imgHeight={60} src="/default-image.jpg" alt="product" />
           <div>
@@ -44,23 +44,25 @@ const HeaderCart: React.FC<HeaderCartProps> = ({ lang }) => {
             </Space>
           </div>
         </Space>
-      </div>
+      </Link>
     ));
   };
   return (
     <div ref={cartRef} className="bottom-cart">
       <Avatar badge="0" rootClassName="cart-icon" onClick={handleOpen}>
-        <HiShoppingCart size={20} />
+        <CgShoppingCart size={25} />
       </Avatar>
 
       {render && (
         <div className={`cart-dropdown ${dropdownClassName}`}>
           <div className="dropdown-inner">{renderItems()}</div>
           <div className="dropdown-action">
-            <span>$14.000.000</span>
-            <Button sizes="sm" color="green">
-              <Link href={CART}>{lang.pageComponent.header.cart}</Link>
-            </Button>
+            <span className="action-text">$14.000.000</span>
+            <Link href={CART}>
+              <Button sizes="sm" color="green">
+                {lang.pageComponent.header.cart}
+              </Button>
+            </Link>
           </div>
         </div>
       )}

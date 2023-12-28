@@ -5,7 +5,7 @@ import type { ParagraphProps } from "@/components/UI/Typography/Paragraph";
 
 const { Paragraph } = Typography;
 
-interface InfoRowProps extends SpaceProps {
+export interface InfoRowProps extends SpaceProps {
   label?: React.ReactNode;
   text?: React.ReactNode;
   labelProps?: ParagraphProps;

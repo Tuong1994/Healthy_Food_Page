@@ -1,4 +1,5 @@
 const common_en = {
+  company: "HEATHY FOOD Co., Ltd",
   menu: {
     home: "Home",
     mart: "Mart",
@@ -48,8 +49,9 @@ const common_en = {
     new: "New",
   },
   actions: {
-    save: "Save",
     ok: "Ok",
+    save: "Save",
+    update: "Update",
     cancel: "Cancel",
   },
   table: {
@@ -60,6 +62,10 @@ const common_en = {
       gender: "Gender",
       birthday: "Birthday",
       address: "Address",
+      image: "Image",
+      productName: "Name",
+      quantity: "Quantity",
+      price: "Price",
     },
   },
   message: {

@@ -6,6 +6,9 @@ import { BreadcrumbItems } from "@/components/UI/Breadcrumb/type";
 import Link from "next/link";
 import ProductCard from "@/components/Page/ProductCard";
 import useLang from "@/hooks/useLang";
+import url from "@/common/constant/url";
+
+const { HOME } = url;
 
 const { Breadcrumb, Card, Pagination, Grid, Typography } = UI;
 
@@ -17,7 +20,7 @@ const Products: NextPage = () => {
   const { lang } = useLang();
 
   const items: BreadcrumbItems = [
-    { id: "1", label: <Link href="/">{lang.common.menu.home}</Link> },
+    { id: "1", label: <Link href={HOME}>{lang.common.menu.home}</Link> },
     { id: "2", label: "Category", actived: true },
   ];
 

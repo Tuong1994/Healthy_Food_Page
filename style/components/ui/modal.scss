@@ -30,6 +30,9 @@
   .modal-body,
   .modal-foot {
     padding: $p-2;
+    @include respond(mdPhone) {
+      padding: $p-2 $p-1;
+    }
   }
   .modal-head {
     color: $text-white;

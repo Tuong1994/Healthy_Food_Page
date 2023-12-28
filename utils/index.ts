@@ -1,3 +1,5 @@
+import { ELang } from "@/common/enum";
+
 const utils = {
   uuid: () => {
     const s4 = () =>
@@ -6,6 +8,7 @@ const utils = {
         .substring(1);
     return `${s4()}-${s4()}-${s4()}/${s4()}-${s4()}-${s4()}`;
   },
+
   collapse: (ref: React.RefObject<any>) => {
     if (!ref.current) return;
     if (ref.current === null) return;
@@ -13,6 +16,12 @@ const utils = {
     const node = ref.current;
     if (node.style.maxHeight) node.style.maxHeight = "";
     else node.style.maxHeight = `${node.scrollHeight}px`;
+  },
+
+  formatPrice: (type: ELang, price: number) => {
+    const displayPrice = price.toLocaleString();
+    const currency = type === ELang.VN ? "đ" : "VND";
+    return `${displayPrice} ${currency}`;
   },
 };
 

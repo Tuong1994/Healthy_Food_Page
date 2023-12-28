@@ -73,6 +73,13 @@
       color: $text-black;
     }
   }
+  .action-btn-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    &:hover {
+      border-color: transparent;
+    }
+  }
   .action-input {
     width: $w-3;
     height: $h-3;
