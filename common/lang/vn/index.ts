@@ -7,6 +7,7 @@ import product_vn from "./product";
 import cart_vn from "./cart";
 import payment_vn from "./payment";
 import delivery_vn from "./delivery";
+import exchange_vn from "./exchange";
 
 const vn = {
   common: common_vn,
@@ -18,6 +19,7 @@ const vn = {
   cart: cart_vn,
   payment: payment_vn,
   delivery: delivery_vn,
+  exchange: exchange_vn,
 };
 
 export type VN = typeof vn;
