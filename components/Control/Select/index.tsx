@@ -10,6 +10,7 @@ import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
 import SelectOption from "./Option";
 import useLang from "@/hooks/useLang";
+import utils from "@/utils";
 
 export interface SelectProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rootClassName?: string;
@@ -138,6 +139,19 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
 
   const errorClassName = rhfError ? "select-error" : "";
 
+  const mainClassName = utils.formatClassName(
+    "select",
+    colorClassName,
+    sizeClassName,
+    shapeClassName,
+    bottomClassName,
+    errorClassName,
+    rootClassName,
+    disabledClassName
+  );
+
+  const controlLabelClassName = utils.formatClassName("select-label", labelClassName);
+
   const iconSize = () => {
     if (controlSize === "sm") return 14;
     if (controlSize === "md") return 16;
@@ -192,13 +206,9 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
   };
 
   return (
-    <div
-      ref={selectRef}
-      style={rootStyle}
-      className={`select ${colorClassName} ${sizeClassName} ${shapeClassName} ${bottomClassName} ${errorClassName} ${rootClassName} ${disabledClassName}`}
-    >
+    <div ref={selectRef} style={rootStyle} className={mainClassName}>
       {label && (
-        <label style={labelStyle} className={`select-label ${labelClassName}`}>
+        <label style={labelStyle} className={controlLabelClassName}>
           {label}
         </label>
       )}

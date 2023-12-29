@@ -4,6 +4,7 @@ import React from "react";
 import { CarouselItems } from "./type";
 import { HiOutlineChevronLeft as ArrowLeft, HiOutlineChevronRight as ArrowRight } from "react-icons/hi2";
 import useCarousel from "./useCarousel";
+import utils from "@/utils";
 
 export interface CarouselHorizontalProps {
   rootClassName?: string;
@@ -81,6 +82,17 @@ const CarouselHorizontal: React.ForwardRefRenderFunction<HTMLDivElement, Carouse
   const prevBtnDisabledClassName = prevBtnDisabled ? "carousel-action-disabled" : "";
 
   const nextBtnDisabledClassName = nextBtnDisabled ? "carousel-action-disabled" : "";
+
+  const mainClassName = utils.formatClassName(
+    "carousel",
+    "carousel-horizontal",
+    modeClassName,
+    rootClassName
+  );
+
+  const leftActionClassName = utils.formatClassName("carousel-action", prevBtnDisabledClassName);
+
+  const rightActionClassName = utils.formatClassName("carousel-action", nextBtnDisabledClassName);
 
   const jumpToSlide = (pos: number) => {
     setSlidePos(pos);
@@ -192,28 +204,24 @@ const CarouselHorizontal: React.ForwardRefRenderFunction<HTMLDivElement, Carouse
     return items.map((item, idx) => {
       const dotActiveClassName = slidePos === idx ? "dots-item-active" : "";
       return (
-        <div key={item.id} className={`dots-item ${dotActiveClassName}`} onClick={() => jumpToSlide(idx)} />
+        <div
+          key={item.id}
+          className={utils.formatClassName("dots-item", dotActiveClassName)}
+          onClick={() => jumpToSlide(idx)}
+        />
       );
     });
   };
 
   return (
-    <div ref={ref} style={style} className={`carousel carousel-horizontal ${modeClassName} ${rootClassName}`}>
+    <div ref={ref} style={style} className={mainClassName}>
       {hasArrow && (
-        <button
-          disabled={prevBtnDisabled}
-          className={`carousel-action ${prevBtnDisabledClassName}`}
-          onClick={onPrev}
-        >
+        <button disabled={prevBtnDisabled} className={leftActionClassName} onClick={onPrev}>
           {leftButtonIcon}
         </button>
       )}
       {hasArrow && (
-        <button
-          disabled={nextBtnDisabled}
-          className={`carousel-action ${nextBtnDisabledClassName}`}
-          onClick={onNext}
-        >
+        <button disabled={nextBtnDisabled} className={rightActionClassName} onClick={onNext}>
           {rightButtonIcon}
         </button>
       )}

@@ -4,6 +4,7 @@ import React from "react";
 import { ComponentSize } from "@/common/type";
 import ImageView from "./View";
 import ImageLoading from "./Loading";
+import utils from "@/utils";
 
 type ImageSize = ComponentSize;
 
@@ -53,6 +54,8 @@ const Image: React.ForwardRefRenderFunction<HTMLImageElement, ImageProps> = (
 
   const fitClassName = `image-${objectFit}`;
 
+  const className = utils.formatClassName("image", fitClassName, rootCheckedClassName, rootClassName);
+
   React.useEffect(() => {
     if (lazyType === "lazy") {
       if (window["IntersectionObserver"]) {
@@ -91,10 +94,7 @@ const Image: React.ForwardRefRenderFunction<HTMLImageElement, ImageProps> = (
   };
 
   return (
-    <div
-      style={{ ...rootStyle, ...imageSize() }}
-      className={`image ${fitClassName} ${rootCheckedClassName} ${rootClassName}`}
-    >
+    <div style={{ ...rootStyle, ...imageSize() }} className={className}>
       {loading && !view ? (
         <ImageLoading ref={elRef} imageSize={imageSize} />
       ) : (

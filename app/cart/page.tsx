@@ -15,7 +15,7 @@ const { HOME } = url;
 
 const { Breadcrumb } = UI;
 
-const isEmpty = true;
+const isEmpty = false;
 
 const Cart: NextPage = () => {
   const { lang } = useLang();

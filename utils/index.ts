@@ -18,6 +18,10 @@ const utils = {
     else node.style.maxHeight = `${node.scrollHeight}px`;
   },
 
+  formatClassName: (...classNames: string[]) => {
+    return classNames.filter((name) => name).join(" ");
+  },
+
   formatPrice: (type: ELang, price: number) => {
     const displayPrice = price.toLocaleString();
     const currency = type === ELang.VN ? "đ" : "VND";

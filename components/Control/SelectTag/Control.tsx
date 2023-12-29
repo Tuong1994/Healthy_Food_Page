@@ -3,6 +3,7 @@ import { FaSpinner } from "react-icons/fa";
 import { HiOutlineChevronDown, HiXCircle } from "react-icons/hi2";
 import { SelectOptions } from "../type";
 import Tags from "./Tags";
+import utils from "@/utils";
 
 interface SelectTagControlProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rhfError: boolean;
@@ -43,6 +44,8 @@ const SelectTagControl: React.ForwardRefRenderFunction<HTMLInputElement, SelectT
 
   const iconRotateClassName = dropdown ? "action-icon-rotate" : "";
 
+  const controlInputClassName = utils.formatClassName("control-box", inputClassName);
+
   // Focus input when error is trigger
   React.useEffect(() => {
     if (rhfError) selectRef.current?.click();
@@ -56,12 +59,12 @@ const SelectTagControl: React.ForwardRefRenderFunction<HTMLInputElement, SelectT
         <Tags selectedOptions={selectedOptions} />
 
         <input
-          {...restProps}
           ref={ref}
+          {...restProps}
+          type="text"
           disabled={controlDisabled}
           value={renderValue()}
-          type="text"
-          className={`control-box ${inputClassName}`}
+          className={controlInputClassName}
         />
         {showClearIcon && (
           <div className="control-action" onClick={handleClearInput}>
@@ -69,7 +72,10 @@ const SelectTagControl: React.ForwardRefRenderFunction<HTMLInputElement, SelectT
           </div>
         )}
         <div className="control-action">
-          <HiOutlineChevronDown size={iconSize()} className={`action-icon ${iconRotateClassName}`} />
+          <HiOutlineChevronDown
+            size={iconSize()}
+            className={utils.formatClassName("action-icon", iconRotateClassName)}
+          />
         </div>
       </div>
 

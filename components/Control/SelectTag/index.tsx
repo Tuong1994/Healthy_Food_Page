@@ -10,6 +10,7 @@ import SelectOption from "./Option";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
 import useLang from "@/hooks/useLang";
+import utils from "@/utils";
 
 export interface SelectTagProps extends React.InputHTMLAttributes<HTMLInputElement> {
   rootClassName?: string;
@@ -134,6 +135,19 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
 
   const errorClassName = rhfError ? "select-error" : "";
 
+  const mainClassName = utils.formatClassName(
+    "select",
+    colorClassName,
+    sizeClassName,
+    shapeClassName,
+    bottomClassName,
+    errorClassName,
+    rootClassName,
+    disabledClassName
+  );
+
+  const controlLabelClassName = utils.formatClassName("select-label", labelClassName);
+
   const defaultOptions = (tags: any[]) => {
     return [...options].filter((option) => {
       if (tags.includes(option.value)) return option;
@@ -197,13 +211,9 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
   };
 
   return (
-    <div
-      ref={selectRef}
-      style={rootStyle}
-      className={`select ${colorClassName} ${sizeClassName} ${shapeClassName} ${bottomClassName} ${errorClassName} ${rootClassName} ${disabledClassName}`}
-    >
+    <div ref={selectRef} style={rootStyle} className={mainClassName}>
       {label && (
-        <label style={labelStyle} className={`select-label ${labelClassName}`}>
+        <label style={labelStyle} className={controlLabelClassName}>
           {label}
         </label>
       )}

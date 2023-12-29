@@ -1,8 +1,9 @@
 "use client";
 
+import utils from "@/utils";
 import React from "react";
 
-type DividerType = "horizontal" | "vertical"
+type DividerType = "horizontal" | "vertical";
 
 type ContentPlacement = "left" | "center" | "right";
 
@@ -37,12 +38,10 @@ const Divider: React.ForwardRefRenderFunction<HTMLDivElement, DividerProps> = (
 
   const verticalStyle = { height: `${verticalSize}px` };
 
+  const className = utils.formatClassName("divider", placementClassName, plainClassName, rootClassName);
+
   return (
-    <div
-      {...restProps}
-      ref={ref}
-      className={`divider ${placementClassName} ${plainClassName} ${rootClassName}`}
-    >
+    <div ref={ref} {...restProps} className={className}>
       {showHorizontal && (
         <div className="divider-horizontal">
           {children && <div className="horizontal-content">{children}</div>}

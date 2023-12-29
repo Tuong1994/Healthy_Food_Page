@@ -4,8 +4,9 @@ import React from "react";
 import TabsHead from "./Head";
 import { TabsItems } from "./type";
 import { ComponentColor } from "@/common/type";
+import utils from "@/utils";
 
-export interface TabsProps {
+export interface TabsProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
   headClassName?: string;
   contentClassName?: string;
@@ -26,12 +27,19 @@ const Tabs: React.ForwardRefRenderFunction<HTMLDivElement, TabsProps> = (
     contentStyle,
     color = "blue",
     items = [],
+    ...restProps
   },
   ref
 ) => {
   const [tabActive, setTabActive] = React.useState<string>("1");
 
   const colorClassName = `tabs-${color}`;
+
+  const mainClassName = utils.formatClassName("tabs", colorClassName, rootClassName);
+
+  const tabsHeadClassName = utils.formatClassName("tabs-head", headClassName);
+
+  const tabsContentClassName = utils.formatClassName("tabs-content", contentClassName);
 
   const renderTitles = () => {
     return items.map((item) => {
@@ -43,11 +51,11 @@ const Tabs: React.ForwardRefRenderFunction<HTMLDivElement, TabsProps> = (
 
   const renderContents = () => {
     return items.map((item) => {
-      const actived = tabActive === item.id 
+      const actived = tabActive === item.id;
       const tabActiveClassName = actived ? "content-item-active" : "";
       if (actived) {
         return (
-          <div key={item.id} className={`content-item ${tabActiveClassName}`}>
+          <div key={item.id} className={utils.formatClassName("content-item", tabActiveClassName)}>
             {item.content}
           </div>
         );
@@ -58,12 +66,12 @@ const Tabs: React.ForwardRefRenderFunction<HTMLDivElement, TabsProps> = (
   };
 
   return (
-    <div ref={ref} style={style} className={`tabs ${colorClassName} ${rootClassName}`}>
-      <div style={headStyle} className={`tabs-head ${headClassName}`}>
+    <div ref={ref} style={style} {...restProps} className={mainClassName}>
+      <div style={headStyle} className={tabsHeadClassName}>
         {renderTitles()}
       </div>
 
-      <div style={contentStyle} className={`tabs-content ${contentClassName}`}>
+      <div style={contentStyle} className={tabsContentClassName}>
         {renderContents()}
       </div>
     </div>

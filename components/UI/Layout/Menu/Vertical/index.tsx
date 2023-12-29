@@ -4,6 +4,7 @@ import React from "react";
 import { MenuItems } from "../type";
 import LayoutContext, { LayoutColor } from "../../Context";
 import MenuVerticalItem from "./Item";
+import utils from "@/utils";
 
 export interface MenuVerticalProps {
   rootClassName?: string;
@@ -25,17 +26,15 @@ const MenuVertical: React.ForwardRefRenderFunction<HTMLDivElement, MenuVerticalP
 
   const colorClassName = `menu-vertical-${layouted ? layoutColor : color}`;
 
+  const className = utils.formatClassName("menu-vertical", themeClassName, colorClassName, rootClassName);
+
   const handleSelectMenu = (id: string) => {
     if (activeId.length) setActiveId([]);
     setActiveId([id]);
   };
 
   return (
-    <div
-      {...restProps}
-      ref={ref}
-      className={`menu-vertical ${themeClassName} ${colorClassName} ${rootClassName}`}
-    >
+    <div ref={ref} {...restProps} className={className}>
       {items.map((item) => (
         <MenuVerticalItem
           key={item.id}

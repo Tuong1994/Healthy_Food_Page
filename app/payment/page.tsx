@@ -17,7 +17,7 @@ const Payment: NextPage = () => {
 
   return (
     <div className="page payment">
-      <Title>{lang.payment.title}</Title>
+      <Title weight={600}>{lang.payment.title}</Title>
       <PaymentMethods lang={lang} />
       <PaymentTransfer lang={lang} />
       <PaymentCash lang={lang} />

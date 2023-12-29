@@ -5,6 +5,7 @@ import { useOverflow, useRender } from "@/hooks";
 import Portal from "@/components/Portal";
 import Button, { ButtonProps } from "../Button";
 import useLang from "@/hooks/useLang";
+import utils from "@/utils";
 
 export interface ModalProps {
   rootClassName?: string;
@@ -74,6 +75,22 @@ const Modal: React.ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (
 
   const modalActiveClassName = open ? "modal-active" : "";
 
+  const backdropClassName = utils.formatClassName("modal-backdrop", backdropActiveClassName);
+
+  const mainClassName = utils.formatClassName(
+    "modal",
+    colorClassName,
+    sizeClassName,
+    modalActiveClassName,
+    rootClassName
+  );
+
+  const modalHeadClassName = utils.formatClassName("modal-head", headClassName);
+
+  const modalBodyClassName = utils.formatClassName("modal-body", bodyClassName);
+
+  const modalFootClassName = utils.formatClassName("modal-foot", footClassName);
+
   const okButtonColor = color === "white" || color === "gray" ? "blue" : okButtonProps?.color ?? color;
 
   const okActionProps: ButtonProps = { ...okButtonProps, color: okButtonColor };
@@ -82,29 +99,22 @@ const Modal: React.ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (
     <Portal>
       {render && (
         <React.Fragment>
-          <div
-            className={`modal-backdrop ${backdropActiveClassName}`}
-            onClick={() => backdropClose && onCancel?.()}
-          />
+          <div className={backdropClassName} onClick={() => backdropClose && onCancel?.()} />
 
-          <div
-            ref={ref}
-            style={style}
-            className={`modal ${colorClassName} ${sizeClassName} ${modalActiveClassName} ${rootClassName}`}
-          >
+          <div ref={ref} style={style} className={mainClassName}>
             {hasHead && (
-              <div style={headStyle} className={`modal-head ${headClassName}`}>
+              <div style={headStyle} className={modalHeadClassName}>
                 {head}
                 {hasCloseIcon && <HiXMark size={20} className="head-icon" onClick={onCancel} />}
               </div>
             )}
 
-            <div style={bodyStyle} className={`modal-body ${bodyClassName}`}>
+            <div style={bodyStyle} className={modalBodyClassName}>
               {children}
             </div>
 
             {hasFoot && (
-              <div style={footStyle} className={`modal-foot ${footClassName}`}>
+              <div style={footStyle} className={modalFootClassName}>
                 <Button {...cancelButtonProps} onClick={onCancel}>
                   {cancelButtonTitle ?? lang.common.actions.cancel}
                 </Button>

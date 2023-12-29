@@ -1,9 +1,10 @@
 import React from "react";
 import { ComponentSize } from "@/common/type";
+import utils from "@/utils";
 
-type NoteMessageType = "default" | "error"
+type NoteMessageType = "default" | "error";
 
-type NoteMessageSize = ComponentSize | number
+type NoteMessageSize = ComponentSize | number;
 
 export interface NoteMessageProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
@@ -11,7 +12,7 @@ export interface NoteMessageProps extends React.HTMLAttributes<HTMLDivElement> {
   weight?: number;
   italic?: boolean;
   type?: NoteMessageType;
-  size?: NoteMessageSize
+  size?: NoteMessageSize;
 }
 
 const NoteMessage: React.ForwardRefRenderFunction<HTMLDivElement, NoteMessageProps> = (
@@ -31,6 +32,8 @@ const NoteMessage: React.ForwardRefRenderFunction<HTMLDivElement, NoteMessagePro
 
   const italicClassName = italic ? `note-message-italic` : "";
 
+  const className = utils.formatClassName("note-message", typeClassName, italicClassName, rootClassName);
+
   const inlineStyle = (): React.CSSProperties => {
     const customStyle: React.CSSProperties = { ...style, fontWeight: weight };
     if (typeof size === "number") return { ...customStyle, fontSize: `${size}px` };
@@ -41,12 +44,7 @@ const NoteMessage: React.ForwardRefRenderFunction<HTMLDivElement, NoteMessagePro
   };
 
   return (
-    <div
-      {...restProps}
-      ref={ref}
-      style={inlineStyle()}
-      className={`note-message ${typeClassName} ${italicClassName} ${rootClassName}`}
-    >
+    <div ref={ref} style={inlineStyle()} {...restProps} className={className}>
       {message}
     </div>
   );
