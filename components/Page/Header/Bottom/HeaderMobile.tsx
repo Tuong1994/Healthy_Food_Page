@@ -5,6 +5,9 @@ import { ELang } from "@/common/enum";
 import Link from "next/link";
 import Logo from "../../Logo";
 import useLangStore from "@/store/LangStore";
+import url from "@/common/constant/url";
+
+const { HOME, ABOUT, PAYMENT, DELIVERY, EXCHANGE } = url;
 
 const { Button, Space, Drawer, Divider, Grid } = UI;
 
@@ -19,11 +22,11 @@ const HeaderMobile: React.FC<HeaderMobileProps> = () => {
 
   const menu = React.useMemo(
     () => [
-      { id: "1", label: lang.common.menu.home, path: "/" },
-      { id: "2", label: lang.common.menu.about, path: "/" },
-      { id: "3", label: lang.common.menu.payment, path: "/" },
-      { id: "4", label: lang.common.menu.delivery, path: "/" },
-      { id: "5", label: lang.common.menu.exchange, path: "/" },
+      { id: "1", label: lang.common.menu.home, path: HOME },
+      { id: "2", label: lang.common.menu.about, path: ABOUT },
+      { id: "3", label: lang.common.menu.payment, path: PAYMENT },
+      { id: "4", label: lang.common.menu.delivery, path: DELIVERY },
+      { id: "5", label: lang.common.menu.exchange, path: EXCHANGE },
     ],
     [lang]
   );

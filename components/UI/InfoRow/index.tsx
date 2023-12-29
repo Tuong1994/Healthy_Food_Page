@@ -20,7 +20,7 @@ const InfoRow: React.ForwardRefRenderFunction<HTMLDivElement, InfoRowProps> = (
 
   const textDefaultProps: ParagraphProps = { ...textProps, strong: true };
   return (
-    <Space ref={ref} {...restProps} size={size} rootClassName="info-row">
+    <Space ref={ref} size={size} rootClassName="info-row" {...restProps}>
       <Paragraph {...labelDefaultProps}>{label} :</Paragraph>
       <Paragraph {...textDefaultProps}>{text}</Paragraph>
     </Space>

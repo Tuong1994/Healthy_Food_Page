@@ -7,9 +7,9 @@ import { BreadcrumbItems } from "@/components/UI/Breadcrumb/type";
 import Link from "next/link";
 import CartConfirm from "./CartConfirm";
 import CartPayment from "./CartPayment";
-import useLang from "@/hooks/useLang";
-import url from "@/common/constant/url";
 import CartEmpty from "./CartEmpty";
+import useLang from "@/hooks/useLang";
+import url from "@/common/constant/url"; 
 
 const { HOME } = url;
 
@@ -32,7 +32,7 @@ const Cart: NextPage = () => {
   const handleUnConfirm = () => setIsConfirmed(false);
 
   return (
-    <div className="cart">
+    <div className="page cart">
       <Breadcrumb items={items} />
 
       {!isEmpty ? (

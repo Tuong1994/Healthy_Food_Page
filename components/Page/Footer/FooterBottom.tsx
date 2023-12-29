@@ -3,6 +3,9 @@ import { UI } from "@/components";
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 import Link from "next/link";
 import useLang from "@/hooks/useLang";
+import url from "@/common/constant/url";
+
+const { HOME, ABOUT, PAYMENT, DELIVERY, EXCHANGE } = url;
 
 const { Grid, UList, Typography, Space, Image } = UI;
 
@@ -25,10 +28,10 @@ const FooterBottom: React.FC<FooterBottomProps> = () => {
         <Col span={4}>
           <List head="HeaFood.vn" icon={""}>
             <ListItem rootClassName="list-link">
-              <Link href="/">{lang.common.menu.home}</Link>
+              <Link href={HOME}>{lang.common.menu.home}</Link>
             </ListItem>
             <ListItem rootClassName="list-link">
-              <Link href="/">{lang.common.menu.about}</Link>
+              <Link href={ABOUT}>{lang.common.menu.about}</Link>
             </ListItem>
           </List>
         </Col>
@@ -47,13 +50,13 @@ const FooterBottom: React.FC<FooterBottomProps> = () => {
               </Space>
             </ListItem>
             <ListItem rootClassName="list-link">
-              <Link href="/">{lang.common.menu.payment}</Link>
+              <Link href={PAYMENT}>{lang.common.menu.payment}</Link>
             </ListItem>
             <ListItem rootClassName="list-link">
-              <Link href="/">{lang.common.menu.delivery}</Link>
+              <Link href={DELIVERY}>{lang.common.menu.delivery}</Link>
             </ListItem>
             <ListItem rootClassName="list-link">
-              <Link href="/">{lang.common.menu.exchange}</Link>
+              <Link href={EXCHANGE}>{lang.common.menu.exchange}</Link>
             </ListItem>
           </List>
         </Col>

@@ -24,7 +24,7 @@ const Product: NextPage = () => {
   ];
 
   return (
-    <div className="product-detail">
+    <div className="page product-detail">
       <Breadcrumb items={items} />
       <ProductInfo lang={lang} />
       <ProductTabs lang={lang} />

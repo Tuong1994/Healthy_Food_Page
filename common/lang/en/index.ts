@@ -4,6 +4,7 @@ import cart_en from "./cart";
 import common_en from "./common";
 import home_en from "./home";
 import page_components_en from "./page-components";
+import payment_en from "./payment";
 import product_en from "./product";
 
 const en = {
@@ -14,6 +15,7 @@ const en = {
   about: about_en,
   product: product_en,
   cart: cart_en,
+  payment: payment_en,
 };
 
 export type EN = typeof en;

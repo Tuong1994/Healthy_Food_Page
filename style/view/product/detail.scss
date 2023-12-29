@@ -1,5 +1,4 @@
 .product-detail {
-  padding: 0 $p-1 * 8;
   .detail-info {
     margin-bottom: $m-5;
     .info-image {
@@ -31,8 +30,5 @@
   }
   .detail-tabs {
     margin-bottom: $m-5;
-  }
-  @include respond(lgTablet) {
-    padding: 0 $p-1;
   }
 }

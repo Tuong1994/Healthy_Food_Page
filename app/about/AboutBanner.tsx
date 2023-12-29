@@ -50,7 +50,7 @@ const AboutBanner: React.FC<AboutBannerProps> = ({ lang }) => {
           </List>
         </Col>
         <Col xs={0} md={0} lg={10} span={10}>
-          <Image imgWidth="100%" src="/banner/about-banner.webp" />
+          <Image imgWidth="100%" src="/about/about-banner.webp" />
         </Col>
       </Row>
     </Section>

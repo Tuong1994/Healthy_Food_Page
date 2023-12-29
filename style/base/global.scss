@@ -8,3 +8,10 @@
 .main-full {
   padding: 0;
 }
+
+.page {
+  padding: 0 $p-1 * 8;
+  @include respond(lgTablet) {
+    padding: 0 $p-1;
+  }
+}

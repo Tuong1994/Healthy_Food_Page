@@ -24,7 +24,7 @@ const PaymentMethod: React.FC<PaymentMethodProps> = ({ lang, onSelectedMethod })
           <Paragraph italic>{lang.cart.methods.transfer.content}</Paragraph>
           <InfoRow label={lang.cart.methods.transfer.holders} text={lang.common.company} />
           <InfoRow label={lang.cart.methods.transfer.number} text="015.736.772" />
-          <InfoRow label={lang.cart.methods.transfer.bank} text="VIB" />
+          <InfoRow label={lang.cart.methods.transfer.branch} text="VIB - HCM" />
         </React.Fragment>
       ),
     },

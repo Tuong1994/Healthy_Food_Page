@@ -5,6 +5,7 @@ import home_vn from "./home";
 import about_vn from "./about";
 import product_vn from "./product";
 import cart_vn from "./cart";
+import payment_vn from "./payment";
 
 const vn = {
   common: common_vn,
@@ -14,6 +15,7 @@ const vn = {
   about: about_vn,
   product: product_vn,
   cart: cart_vn,
+  payment: payment_vn,
 };
 
 export type VN = typeof vn;

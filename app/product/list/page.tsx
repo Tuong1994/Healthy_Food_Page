@@ -25,7 +25,7 @@ const Products: NextPage = () => {
   ];
 
   return (
-    <div className="product-list">
+    <div className="page product-list">
       <Breadcrumb items={items} />
       <Title level={4} weight={600}>
         Category

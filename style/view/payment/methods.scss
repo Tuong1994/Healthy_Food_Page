@@ -1,0 +1,17 @@
+.payment-methods {
+  margin-bottom: $m-5 + 5;
+  .methods-item {
+    height: $h-10 * 2;
+    .item-head {
+      background: $bg-green;
+      * {
+        color: $text-white;
+      }
+    }
+    .item-icon {
+      path {
+        color: $text-green;
+      }
+    }
+  }
+}

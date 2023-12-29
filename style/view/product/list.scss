@@ -1,5 +1,4 @@
 .product-list {
-  padding: 0 $p-1 * 8;
   .list-wrap {
     .wrap-body {
       @include respond(lgTablet) {
@@ -12,8 +11,5 @@
   }
   .list-pagination {
     margin-top: $m-2;
-  }
-  @include respond(lgTablet) {
-    padding: 0 $p-1;
   }
 }
