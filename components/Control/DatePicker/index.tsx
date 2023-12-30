@@ -4,7 +4,7 @@ import React from "react";
 import { useFormContext } from "react-hook-form";
 import { ControlColor, ControlShape, SelectDate } from "../type";
 import { ComponentSize } from "@/common/type";
-import { useRender, useClickOutside, useDetectBottom } from "@/hooks";
+import { useRender, useClickOutside, useDetectBottom, useLang } from "@/hooks";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
 import DatePickerControl from "./Control";
@@ -28,6 +28,9 @@ export interface DatePickerProps {
   sizes?: ComponentSize;
   color?: ControlColor;
   shape?: ControlShape;
+  hasReset?: boolean;
+  required?: boolean;
+  optional?: boolean;
   onChangeSelect?: (date: Date) => void;
 }
 
@@ -49,17 +52,22 @@ const DatePicker: React.ForwardRefRenderFunction<HTMLDivElement, DatePickerProps
     shape = "square",
     format = "DD/MM/YYYY",
     value = new Date(),
+    required,
+    optional,
+    hasReset = true,
     onChangeSelect,
   },
   ref
 ) => {
+  const { lang } = useLang();
+
   const rhfMethods = useFormContext();
 
   const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = React.useContext(FormContext);
 
   const { isRhf, rhfName, rhfError, rhfValue, rhfDisabled } = React.useContext(FormItemContext);
 
-  const [selectedDate, setSelectedDate] = React.useState<Date>(value);
+  const [selectedDate, setSelectedDate] = React.useState<Date>(value instanceof Date ? value : new Date());
 
   const [dropdown, setDropdown] = React.useState<boolean>(false);
 
@@ -81,7 +89,11 @@ const DatePicker: React.ForwardRefRenderFunction<HTMLDivElement, DatePickerProps
 
   const controlShape = isRhf ? rhfShape : shape;
 
-  const showResetIcon = Boolean(selectedDate.getDate() !== new Date().getDate() && !controlDisabled);
+  const showResetIcon = Boolean(
+    selectedDate.getDate() !== new Date().getDate() && hasReset && !controlDisabled
+  );
+
+  const showOptional = required ? false : optional;
 
   const sizeClassName = `datepicker-${controlSize}`;
 
@@ -120,7 +132,7 @@ const DatePicker: React.ForwardRefRenderFunction<HTMLDivElement, DatePickerProps
 
   // Set default value
   React.useEffect(() => {
-    if (isRhf && rhfValue) setSelectedDate(rhfValue);
+    if (isRhf && rhfValue) return setSelectedDate(rhfValue instanceof Date ? rhfValue : new Date());
   }, [isRhf, rhfValue]);
 
   const iconSize = () => {
@@ -150,7 +162,9 @@ const DatePicker: React.ForwardRefRenderFunction<HTMLDivElement, DatePickerProps
     <div ref={datepickerRef} style={rootStyle} className={mainClassName}>
       {label && (
         <label style={labelStyle} className={controlLabelClassName}>
-          {label}
+          {required && <span className="label-required">*</span>}
+          <span>{label}</span>
+          {showOptional && <span className="label-optional">({lang.common.form.label.optional})</span>}
         </label>
       )}
 

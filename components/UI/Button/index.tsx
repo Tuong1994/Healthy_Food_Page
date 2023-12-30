@@ -38,7 +38,7 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
 
   const btnDisabled = disabled || loading;
 
-  const buttonColor = rhfColor ? rhfColor : color;
+  const buttonColor = color ? color : rhfColor;
 
   const buttonSize = rhfSizes ? rhfSizes : sizes;
 

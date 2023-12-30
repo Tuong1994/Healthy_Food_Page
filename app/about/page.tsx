@@ -2,12 +2,12 @@
 
 import React from "react";
 import { NextPage } from "next";
+import { useLang } from "@/hooks";
 import AboutBanner from "./AboutBanner";
 import AboutGuarantee from "./AboutGuarantee";
 import AboutBlog from "./AboutBlog";
 import AboutStory from "./AboutStory";
 import AboutCategory from "./AboutCategory";
-import useLang from "@/hooks/useLang";
 
 const About: NextPage = () => {
   const { lang } = useLang();

@@ -8,9 +8,12 @@ import cart_vn from "./cart";
 import payment_vn from "./payment";
 import delivery_vn from "./delivery";
 import exchange_vn from "./exchange";
+import customer_vn from "./customer_vn";
+import options_vn from "./options";
 
 const vn = {
   common: common_vn,
+  options: options_vn,
   pageComponent: page_components_vn,
   auth: auth_vn,
   home: home_vn,
@@ -20,6 +23,7 @@ const vn = {
   payment: payment_vn,
   delivery: delivery_vn,
   exchange: exchange_vn,
+  customer:  customer_vn,
 };
 
 export type VN = typeof vn;

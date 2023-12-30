@@ -7,6 +7,11 @@ const page_components_vn = {
       en: "Tiếng Anh",
       vn: "Tiếng Việt",
     },
+    profile: {
+      customer: "Khách hàng",
+      admin: "Quản trị",
+      logout: "Đăng xuất",
+    },
   },
   footer: {
     support: "Hỗ trợ",
@@ -23,7 +28,7 @@ const page_components_vn = {
     normal: "Bình thường",
     bad: "Tệ",
     terrible: "Quá tệ",
-    modalTitle: 'Đánh giá sản phẩm',
+    modalTitle: "Đánh giá sản phẩm",
   },
 };
 

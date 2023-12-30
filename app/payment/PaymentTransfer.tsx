@@ -1,7 +1,7 @@
 import React from "react";
 import { UI } from "@/components";
-import { Lang } from "@/common/type";
-import { InfoRowProps } from "@/components/UI/InfoRow";
+import type { Lang } from "@/common/type";
+import type { InfoRowProps } from "@/components/UI/InfoRow";
 
 const { Divider, Image, InfoRow, Space, Grid, Typography } = UI;
 
@@ -15,8 +15,8 @@ interface PaymentTransferProps {
 
 const PaymentTransfer: React.FC<PaymentTransferProps> = ({ lang }) => {
   const infoRowProps: InfoRowProps = {
-    labelProps: { size: 18, style: { width: "80px" } },
-    textProps: { size: 18 },
+    labelSpanProps: { xs: 10, md: 10, lg: 10, span: 10 },
+    textSpanProps: { xs: 14, md: 14, lg: 14, span: 14 },
   };
 
   return (
@@ -40,10 +40,10 @@ const PaymentTransfer: React.FC<PaymentTransferProps> = ({ lang }) => {
             </Paragraph>
           </Space>
           <Row gutters={[10, 20]} align="middle">
-            <Col xs={0} md={5} lg={5} span={5}>
+            <Col xs={0} md={5} lg={8} span={5}>
               <Image src="/payment/vib.jpg" imgWidth="100%" />
             </Col>
-            <Col xs={24}>
+            <Col xs={24} md={14} lg={16} span={12}>
               <Paragraph size={20} strong rootClassName="transfer-content">
                 Ngân hàng Quốc Tế VIB
               </Paragraph>

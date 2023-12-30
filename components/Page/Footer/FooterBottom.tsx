@@ -1,8 +1,8 @@
 import React from "react";
 import { UI } from "@/components";
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
+import { useLang } from "@/hooks";
 import Link from "next/link";
-import useLang from "@/hooks/useLang";
 import url from "@/common/constant/url";
 
 const { HOME, ABOUT, PAYMENT, DELIVERY, EXCHANGE } = url;
@@ -86,7 +86,7 @@ const FooterBottom: React.FC<FooterBottomProps> = () => {
         {lang.pageComponent.footer.content}
       </Paragraph>
       <Paragraph align="center" variant="secondary">
-        {lang.common.form.label.address}: {lang.pageComponent.footer.address}
+        {lang.common.form.label.fullAddress}: {lang.pageComponent.footer.address}
       </Paragraph>
     </div>
   );

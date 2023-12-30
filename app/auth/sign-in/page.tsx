@@ -3,8 +3,8 @@
 import { NextPage } from "next";
 import { UI, Control } from "@/components";
 import { HiUser, HiLockClosed } from "react-icons/hi2";
+import { useLang } from "@/hooks";
 import AuthHeader from "@/components/Page/Auth/AuthHeader";
-import useLang from "@/hooks/useLang";
 import AuthBack from "@/components/Page/Auth/AuthBack";
 import AuthNote from "@/components/Page/Auth/AuthNote";
 import Link from "next/link";

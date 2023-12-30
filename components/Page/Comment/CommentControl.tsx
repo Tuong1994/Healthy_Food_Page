@@ -1,7 +1,7 @@
 import React from "react";
 import { UI, Control } from "@/components";
+import { useLang } from "@/hooks";
 import CommentAuthor from "./CommentAuthor";
-import useLang from "@/hooks/useLang";
 
 const { Space, Button } = UI;
 

@@ -3,11 +3,11 @@
 import { NextPage } from "next";
 import { UI } from "@/components";
 import { BreadcrumbItems } from "@/components/UI/Breadcrumb/type";
+import { useLang } from "@/hooks";
 import Link from "next/link";
 import ProductInfo from "./ProductInfo";
 import ProductSimilar from "./ProductSimilar";
 import ProductTabs from "./ProductTabs";
-import useLang from "@/hooks/useLang";
 import url from "@/common/constant/url";
 
 const { HOME, PRODUCT_LIST } = url;

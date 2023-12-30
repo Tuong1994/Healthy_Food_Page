@@ -7,6 +7,11 @@ const page_components_en = {
       en: "English",
       vn: "Vietnamese",
     },
+    profile: {
+      customer: "Customer",
+      admin: "Administrator",
+      logout: "Logout",
+    },
   },
   footer: {
     support: "Support",
@@ -23,7 +28,7 @@ const page_components_en = {
     normal: "Normal",
     bad: "Bad",
     terrible: "Terrible",
-    modalTitle: 'Rate product',
+    modalTitle: "Rate product",
   },
 };
 

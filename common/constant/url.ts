@@ -10,6 +10,7 @@ const url = {
   PAYMENT: "/payment",
   DELIVERY: "/delivery",
   EXCHANGE: "/exchange",
+  CUSTOMER: "/customer",
 };
 
 export default url;

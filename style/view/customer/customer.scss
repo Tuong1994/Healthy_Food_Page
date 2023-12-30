@@ -1,0 +1,18 @@
+.customer {
+  .customer-info {
+    background: $bg-green;
+    * {
+      color: $text-white;
+    }
+    .info-edit-icon {
+      cursor: pointer;
+      transition: opacity $transition-time-sm $transition-fn;
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
+  .customer-table-pagination {
+    margin: $m-1;
+  }
+}

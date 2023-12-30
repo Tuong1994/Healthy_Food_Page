@@ -1,11 +1,11 @@
 import React from "react";
 import { UI } from "@/components";
 import { Columns } from "@/components/UI/Table/type";
+import { useLang } from "@/hooks";
 import PaymentMethod from "./PaymentMethod";
 import PaymentReceived from "./PaymentReceived";
 import PaymentInfo from "./PaymentInfo";
 import PaymentActions from "./PaymentActions";
-import useLang from "@/hooks/useLang";
 import utils from "@/utils";
 import PurchasedModal from "./PurchasedModal";
 

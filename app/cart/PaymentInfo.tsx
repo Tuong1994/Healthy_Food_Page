@@ -1,7 +1,7 @@
 import React from "react";
 import { UI } from "@/components";
-import { Lang } from "@/common/type";
-import { InfoRowProps } from "@/components/UI/InfoRow";
+import type { Lang } from "@/common/type";
+import type { InfoRowProps } from "@/components/UI/InfoRow";
 
 const { Card, InfoRow, Divider, Typography } = UI;
 
@@ -13,7 +13,8 @@ interface PaymentInfoProps {
 
 const PaymentInfo: React.FC<PaymentInfoProps> = ({ lang }) => {
   const commonProps: InfoRowProps = {
-    labelProps: { style: { width: "120px" } },
+    labelSpanProps: { span: 10 },
+    textSpanProps: { span: 14 },
   };
 
   return (

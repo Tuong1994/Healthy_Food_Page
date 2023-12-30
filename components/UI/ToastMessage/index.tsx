@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
+import { useRender } from "@/hooks";
 import ToastMessageItem from "./Item";
 import Portal from "@/components/Portal";
-import useRender from "@/hooks/useRender";
 import useToastStore from "./ToastStore";
 import utils from "@/utils";
 

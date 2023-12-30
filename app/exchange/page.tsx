@@ -2,7 +2,7 @@
 
 import { NextPage } from "next";
 import { UI } from "@/components";
-import useLang from "@/hooks/useLang";
+import { useLang } from "@/hooks";
 
 const { UList, Typography } = UI;
 

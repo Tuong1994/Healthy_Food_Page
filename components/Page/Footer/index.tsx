@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
+import { useNotDisplay } from "@/hooks";
 import FooterTop from "./FooterTop";
 import FooterBottom from "./FooterBottom";
-import useNotDisplay from "@/hooks/useNotDisplay";
 
 interface FooterProps {}
 

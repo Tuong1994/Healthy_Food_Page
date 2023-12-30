@@ -3,8 +3,7 @@
 import React from "react";
 import HeaderBottom from "./Bottom";
 import HeaderTop from "./Top";
-import useLang from "@/hooks/useLang";
-import useNotDisplay from "@/hooks/useNotDisplay";
+import { useLang, useNotDisplay } from "@/hooks";
 
 interface HeaderProps {}
 

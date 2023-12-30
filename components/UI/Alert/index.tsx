@@ -9,8 +9,8 @@ import {
 import { PiWarningCircleFill as WarningIcon } from "react-icons/pi";
 import { AlertType } from "./type";
 import { ComponentPlacement, Record } from "@/common/type";
+import { useRender } from "@/hooks";
 import Portal from "@/components/Portal";
-import useRender from "@/hooks/useRender";
 import utils from "@/utils";
 
 export interface AlertProps {

@@ -3,10 +3,10 @@ import { UI } from "@/components";
 import { ModalProps } from "@/components/UI/Modal";
 import { Lang } from "@/common/type";
 import { Columns } from "@/components/UI/Table/type";
-import utils from "@/utils";
 import { ELang } from "@/common/enum";
 import ShipmentInfo from "./ShipmentInfo";
 import PaymentInfo from "./PaymentInfo";
+import utils from "@/utils";
 
 const { Modal, Card, Divider, Table, Image, Badge, Typography } = UI;
 

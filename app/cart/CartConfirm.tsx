@@ -2,8 +2,8 @@ import React from "react";
 import { UI } from "@/components";
 import { Columns } from "@/components/UI/Table/type";
 import { HiTrash } from "react-icons/hi2";
+import { useLang } from "@/hooks";
 import ProductCardControl from "@/components/Page/ProductCard/ProductCardControl";
-import useLang from "@/hooks/useLang";
 import utils from "@/utils";
 
 const { Table, Image, Pagination, Divider, Space, Button, Typography } = UI;

@@ -1,7 +1,7 @@
 "use client";
 
-import utils from "@/utils";
 import React from "react";
+import utils from "@/utils";
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;

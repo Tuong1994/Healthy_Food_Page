@@ -1,7 +1,7 @@
 import React from "react";
 import { UI } from "@/components";
-import useCategoryStore from "@/store/CategoryStore";
 import { BreadcrumbItems } from "@/components/UI/Breadcrumb/type";
+import useCategoryStore from "@/store/CategoryStore";
 
 const { Breadcrumb, Typography, Grid } = UI;
 

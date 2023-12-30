@@ -2,9 +2,9 @@
 
 import React from "react";
 import { UI } from "@/components";
+import { GridAppContext } from "@/components/UI/Grid/Context";
 import Link from "next/link";
 import ProductCardLike from "./ProductCardLike";
-import { GridAppContext } from "@/components/UI/Grid/Context";
 
 const { Image, Badge } = UI;
 

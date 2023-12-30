@@ -1,9 +1,15 @@
 .rate {
   margin: $m-1 0;
-  .rate-star {
-    path {
-      color: $text-slate;
-    }
+}
+
+.rate-star {
+  path {
+    color: $text-slate;
+  }
+}
+.rate-star-yellow {
+  path {
+    color: $text-yellow;
   }
 }
 

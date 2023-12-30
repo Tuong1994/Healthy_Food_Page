@@ -5,7 +5,7 @@ import { SelectOptions } from "@/components/Control/type";
 import ShipmentModal from "./ShipmentModal";
 import ShipmentInfo from "./ShipmentInfo";
 
-const { Card, Divider, InfoRow, Typography } = UI;
+const { Card, Typography } = UI;
 
 const { Select } = Control;
 

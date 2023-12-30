@@ -4,12 +4,12 @@ import React from "react";
 import { NextPage } from "next";
 import { UI } from "@/components";
 import { BreadcrumbItems } from "@/components/UI/Breadcrumb/type";
+import { useLang } from "@/hooks";
 import Link from "next/link";
 import CartConfirm from "./CartConfirm";
 import CartPayment from "./CartPayment";
 import CartEmpty from "./CartEmpty";
-import useLang from "@/hooks/useLang";
-import url from "@/common/constant/url"; 
+import url from "@/common/constant/url";
 
 const { HOME } = url;
 

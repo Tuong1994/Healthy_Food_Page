@@ -3,7 +3,7 @@
 import React from "react";
 import { UI, Control } from "@/components";
 import { ModalProps } from "@/components/UI/Modal";
-import useLang from "@/hooks/useLang";
+import { useLang } from "@/hooks";
 
 const { Modal, Typography } = UI;
 
@@ -55,7 +55,7 @@ const ShipmentModal: React.FC<ShipmentModalProps> = ({ ...restProps }) => {
           <Input label={lang.common.form.label.email} />
         </FormItem>
         <FormItem name="address">
-          <Input label={lang.common.form.label.address} />
+          <Input label={lang.common.form.label.fullAddress} />
         </FormItem>
         <FormItem name="note">
           <TextArea label={lang.common.form.label.note} />

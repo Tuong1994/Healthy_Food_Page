@@ -16,12 +16,12 @@ const PaymentActions: React.FC<PaymentActionsProps> = ({ lang, handleUnConfirm, 
   return (
     <div className="payment-actions">
       <Row justify="between">
-        <Col xs={6} md={6} lg={6} span={6}>
+        <Col xs={8} md={6} lg={8} span={6}>
           <Button sizes="lg" color="green" ghost rootClassName="actions-btn" onClick={handleUnConfirm}>
             {lang.cart.actions.return}
           </Button>
         </Col>
-        <Col xs={18} md={18} lg={18} span={18} onClick={handleOrder}>
+        <Col xs={16} md={18} lg={16} span={18} onClick={handleOrder}>
           <Button sizes="lg" color="green" rootClassName="actions-btn">
             {lang.cart.actions.purchase}
           </Button>

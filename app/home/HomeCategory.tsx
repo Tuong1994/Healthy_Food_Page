@@ -1,8 +1,8 @@
 import React from "react";
 import { UI } from "@/components";
+import { useLang } from "@/hooks";
 import Link from "next/link";
 import ProductCard from "@/components/Page/ProductCard";
-import useLang from "@/hooks/useLang";
 
 const { Typography, Grid } = UI;
 

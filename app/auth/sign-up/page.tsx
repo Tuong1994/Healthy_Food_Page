@@ -4,8 +4,8 @@ import { NextPage } from "next";
 import { UI, Control } from "@/components";
 import { HiLockClosed, HiPhone, HiUser } from "react-icons/hi2";
 import { HiMail } from "react-icons/hi";
+import { useLang } from "@/hooks";
 import AuthHeader from "@/components/Page/Auth/AuthHeader";
-import useLang from "@/hooks/useLang";
 import AuthBack from "@/components/Page/Auth/AuthBack";
 import AuthNote from "@/components/Page/Auth/AuthNote";
 import Link from "next/link";
@@ -61,7 +61,7 @@ const SignUp: NextPage = () => {
               <Input label={lang.common.form.label.phone} addonBefore={<HiPhone />} />
             </FormItem>
             <FormItem name="email">
-              <Input label={lang.common.form.label.email} addonBefore={<HiMail/>} />
+              <Input label={lang.common.form.label.email} addonBefore={<HiMail />} />
             </FormItem>
 
             <div className="form-actions">

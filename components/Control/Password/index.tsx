@@ -5,9 +5,9 @@ import { HiEye, HiEyeSlash, HiXCircle } from "react-icons/hi2";
 import { useFormContext } from "react-hook-form";
 import { ControlColor, ControlShape, InputValue } from "../type";
 import { ComponentSize } from "@/common/type";
+import { useLang } from "@/hooks";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
-import useLang from "@/hooks/useLang";
 import utils from "@/utils";
 
 export interface InputPasswordProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -22,6 +22,9 @@ export interface InputPasswordProps extends React.InputHTMLAttributes<HTMLInputE
   sizes?: ComponentSize;
   color?: ControlColor;
   shape?: ControlShape;
+  required?: boolean;
+  optional?: boolean;
+  hasClear?: boolean;
   onChangeInput?: (text: string) => void;
 }
 
@@ -41,6 +44,9 @@ const InputPassword: React.ForwardRefRenderFunction<HTMLInputElement, InputPassw
     shape = "square",
     placeholder,
     disabled,
+    required,
+    optional,
+    hasClear = true,
     onBlur,
     onChangeInput,
     ...restProps
@@ -70,7 +76,9 @@ const InputPassword: React.ForwardRefRenderFunction<HTMLInputElement, InputPassw
 
   const controlShape = isRhf ? rhfShape : shape;
 
-  const showClearIcon = inputValue && !controlDisabled;
+  const showClearIcon = inputValue && !controlDisabled && hasClear;
+
+  const showOptional = required ? false : optional;
 
   const sizeClassName = `input-${controlSize}`;
 
@@ -136,7 +144,9 @@ const InputPassword: React.ForwardRefRenderFunction<HTMLInputElement, InputPassw
       <label>
         {label && (
           <div style={labelStyle} className={controlLabelClassName}>
-            {label}
+            {required && <span className="label-required">*</span>}
+            <span>{label}</span>
+            {showOptional && <span className="label-optional">({lang.common.form.label.optional})</span>}
           </div>
         )}
 

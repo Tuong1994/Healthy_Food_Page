@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import useNotDisplay from "@/hooks/useNotDisplay";
+import { useNotDisplay } from "@/hooks";
 
 interface AppContainerProps {
   children: React.ReactNode;

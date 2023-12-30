@@ -4,12 +4,11 @@ import React from "react";
 import { useFormContext } from "react-hook-form";
 import { ControlColor, ControlShape, Option, SelectOptions } from "../type";
 import { ComponentSize } from "@/common/type";
-import { useRender, useClickOutside, useDetectBottom } from "@/hooks";
+import { useRender, useClickOutside, useDetectBottom, useLang } from "@/hooks";
 import SelectTagControl from "./Control";
 import SelectOption from "./Option";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
-import useLang from "@/hooks/useLang";
 import utils from "@/utils";
 
 export interface SelectTagProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -30,6 +29,9 @@ export interface SelectTagProps extends React.InputHTMLAttributes<HTMLInputEleme
   loading?: boolean;
   total?: number;
   limit?: number;
+  hasClear?: boolean;
+  required?: boolean;
+  optional?: boolean;
   onChangeSearch?: (text: string) => void;
   onChangeSelect?: (tags: any[]) => void;
   onChangePage?: (page: number) => void;
@@ -56,6 +58,9 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
     loading = false,
     total = 0,
     limit = 10,
+    required,
+    optional,
+    hasClear = true,
     onChangeSearch,
     onChangeSelect,
     onChangePage,
@@ -121,7 +126,9 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
 
   const controlShape = isRhf ? rhfShape : shape;
 
-  const showClearIcon = Boolean(search && !controlDisabled);
+  const showClearIcon = Boolean(search && hasClear && !controlDisabled);
+
+  const showOptional = required ? false : optional;
 
   const sizeClassName = `select-${controlColor}`;
 
@@ -214,7 +221,9 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
     <div ref={selectRef} style={rootStyle} className={mainClassName}>
       {label && (
         <label style={labelStyle} className={controlLabelClassName}>
-          {label}
+          {required && <span className="label-required">*</span>}
+          <span>{label}</span>
+          {showOptional && <span className="label-optional">({lang.common.form.label.optional})</span>}
         </label>
       )}
 

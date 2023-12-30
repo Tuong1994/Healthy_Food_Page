@@ -4,12 +4,11 @@ import React from "react";
 import { ControlColor, ControlShape, Option, SelectOptions } from "../type";
 import { ComponentSize } from "@/common/type";
 import { useFormContext } from "react-hook-form";
-import { useRender, useClickOutside, useDetectBottom } from "@/hooks";
+import { useRender, useClickOutside, useDetectBottom, useLang } from "@/hooks";
 import SelectControl from "./Control";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
 import SelectOption from "./Option";
-import useLang from "@/hooks/useLang";
 import utils from "@/utils";
 
 export interface TreeSelectProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -30,6 +29,9 @@ export interface TreeSelectProps extends React.InputHTMLAttributes<HTMLInputElem
   loading?: boolean;
   total?: number;
   limit?: number;
+  hasClear?: boolean;
+  required?: boolean;
+  optional?: boolean;
   onChangeSearch?: (text: string) => void;
   onChangeSelect?: (value: string | number | boolean) => void;
   onChangePage?: (page: number) => void;
@@ -56,6 +58,9 @@ const TreeSelect: React.ForwardRefRenderFunction<HTMLInputElement, TreeSelectPro
     loading = false,
     total = 0,
     limit = 10,
+    required,
+    optional,
+    hasClear = true,
     onChangeSearch,
     onChangeSelect,
     onChangePage,
@@ -123,7 +128,9 @@ const TreeSelect: React.ForwardRefRenderFunction<HTMLInputElement, TreeSelectPro
 
   const controlShape = isRhf ? rhfShape : shape;
 
-  const showClearIcon = Boolean((search || selectedOption) && !controlDisabled);
+  const showClearIcon = Boolean((search || selectedOption) && hasClear && !controlDisabled);
+
+  const showOptional = required ? false : optional;
 
   const sizeClassName = `tree-select-${controlSize}`;
 
@@ -138,7 +145,7 @@ const TreeSelect: React.ForwardRefRenderFunction<HTMLInputElement, TreeSelectPro
   const errorClassName = rhfError ? "tree-select-error" : "";
 
   const mainClassName = utils.formatClassName(
-    "tree-zselect",
+    "tree-select",
     colorClassName,
     sizeClassName,
     shapeClassName,
@@ -148,7 +155,7 @@ const TreeSelect: React.ForwardRefRenderFunction<HTMLInputElement, TreeSelectPro
     disabledClassName
   );
 
-  const controlLabelClassName = utils.formatClassName("tree-zselect-label", labelClassName);
+  const controlLabelClassName = utils.formatClassName("tree-select-label", labelClassName);
 
   const iconSize = () => {
     if (controlSize === "sm") return 14;
@@ -206,7 +213,9 @@ const TreeSelect: React.ForwardRefRenderFunction<HTMLInputElement, TreeSelectPro
     <div ref={selectRef} style={rootStyle} className={mainClassName}>
       {label && (
         <label style={labelStyle} className={controlLabelClassName}>
-          {label}
+          {required && <span className="label-required">*</span>}
+          <span>{label}</span>
+          {showOptional && <span className="label-optional">({lang.common.form.label.optional})</span>}
         </label>
       )}
 
