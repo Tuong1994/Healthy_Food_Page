@@ -22,7 +22,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <GridProvider>
+        <AppContainer>{children}</AppContainer>
+        {/* <GridProvider>
           <Header />
           <AppContainer>{children}</AppContainer>
           <Footer />
@@ -30,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <FooterMobile />
 
           <div id="portal"></div>
-        </GridProvider>
+        </GridProvider> */}
       </body>
     </html>
   );

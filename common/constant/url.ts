@@ -1,5 +1,7 @@
+import { ELang } from "../enum";
+
 const url = {
-  HOME: "/",
+  HOME: `/`,
   ABOUT: "/about",
   CART: "/cart",
   FAVORITE: "/favorite",
@@ -11,6 +13,7 @@ const url = {
   DELIVERY: "/delivery",
   EXCHANGE: "/exchange",
   CUSTOMER: "/customer",
+  SEARCH: "/search",
 };
 
 export default url;

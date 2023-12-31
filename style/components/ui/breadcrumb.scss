@@ -12,11 +12,11 @@
       margin-right: 0;
     }
     .item-label {
-      font-size: $text-xs;
+      font-size: $text-2xs;
       color: $text-gray;
       transition: all $transition-time-sm $transition-fn;
       * {
-        font-size: $text-xs;
+        font-size: $text-2xs;
         color: $text-gray;
         transition: all $transition-time-sm $transition-fn;
       }

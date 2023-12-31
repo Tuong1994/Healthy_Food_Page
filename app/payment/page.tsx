@@ -2,11 +2,11 @@
 
 import { NextPage } from "next";
 import { UI } from "@/components";
+import { useLang } from "@/hooks";
 import PaymentMethods from "./PaymentMethods";
 import PaymentTransfer from "./PaymentTransfer";
 import PaymentCash from "./PaymentCash";
 import PaymentCod from "./PaymentCod";
-import useLang from "@/hooks/useLang";
 
 const { Typography } = UI;
 

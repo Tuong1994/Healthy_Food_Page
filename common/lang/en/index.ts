@@ -5,11 +5,13 @@ import common_en from "./common";
 import customer_en from "./customer";
 import delivery_en from "./delivery";
 import exchange_en from "./exchange";
+import favorite_en from "./favorite";
 import home_en from "./home";
 import options_en from "./options";
 import page_components_en from "./page-components";
 import payment_en from "./payment";
 import product_en from "./product";
+import search_en from "./search";
 
 const en = {
   common: common_en,
@@ -24,6 +26,8 @@ const en = {
   delivery: delivery_en,
   exchange: exchange_en,
   customer: customer_en,
+  search: search_en,
+  favorite: favorite_en
 };
 
 export type EN = typeof en;

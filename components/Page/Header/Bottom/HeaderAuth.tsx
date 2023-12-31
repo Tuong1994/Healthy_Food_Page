@@ -4,9 +4,9 @@ import type { Lang } from "@/common/type";
 import type { DropdownItems } from "@/components/UI/Dropdown/type";
 import { BsGear } from "react-icons/bs";
 import { HiUser } from "react-icons/hi2";
+import { HiLogout } from "react-icons/hi";
 import Link from "next/link";
 import url from "@/common/constant/url";
-import { HiLogout } from "react-icons/hi";
 
 const { AUTH_SIGN_IN, AUTH_SIGN_UP, CUSTOMER } = url;
 
