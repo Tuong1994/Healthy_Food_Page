@@ -3,10 +3,13 @@ import { Category } from "@/services/category/type";
 import { ELang } from "@/common/enum";
 
 interface CategoryState {
+  show: boolean;
   categoriesWithSub: Category[];
+  showCategories: () => void;
 }
 
-const store: StateCreator<CategoryState> = () => ({
+const store: StateCreator<CategoryState> = (set) => ({
+  show: false,
   categoriesWithSub: [
     {
       id: "1",
@@ -100,6 +103,7 @@ const store: StateCreator<CategoryState> = () => ({
       ],
     },
   ],
+  showCategories: () => set((state) => ({ ...state, show: !state.show })),
 });
 
 const useCategoryStore = create(store);

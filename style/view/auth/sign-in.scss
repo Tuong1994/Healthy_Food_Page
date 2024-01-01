@@ -16,6 +16,10 @@
     }
     .wrap-form {
       padding: $p-5 $p-5 + 2;
+      .form-link {
+        color: $text-blue;
+        cursor: pointer;
+      }
       .form-actions {
         margin-top: $m-3;
         .actions-btn {

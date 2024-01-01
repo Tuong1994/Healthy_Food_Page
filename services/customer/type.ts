@@ -8,10 +8,9 @@ import { EGender, ERole } from "./enum";
 export type Customer = {
   id?: string;
 
-  account: string;
+  email: string;
   password?: string;
   phone: string;
-  email: string;
   role: ERole;
 
   firstName?: string;

@@ -2,7 +2,8 @@
 
 import { NextPage } from "next";
 import { UI, Control } from "@/components";
-import { HiUser, HiLockClosed } from "react-icons/hi2";
+import { HiLockClosed } from "react-icons/hi2";
+import { HiMail } from "react-icons/hi";
 import { useLang } from "@/hooks";
 import AuthHeader from "@/components/Page/Auth/AuthHeader";
 import AuthBack from "@/components/Page/Auth/AuthBack";
@@ -12,14 +13,14 @@ import url from "@/common/constant/url";
 
 const { AUTH_SIGN_UP } = url;
 
-const { Card, Button, Typography } = UI;
+const { Card, Space, Button, Typography } = UI;
 
 const { Title } = Typography;
 
 const { Form, FormItem, Input, InputPassword } = Control;
 
 interface FormData {
-  account: string;
+  email: string;
   password: string;
 }
 
@@ -27,7 +28,7 @@ const SignIn: NextPage = () => {
   const { lang } = useLang();
 
   const initialData: FormData = {
-    account: "",
+    email: "",
     password: "",
   };
 
@@ -46,12 +47,16 @@ const SignIn: NextPage = () => {
           bodyClassName="wrap-form"
         >
           <Form<FormData> color="green" sizes="lg" initialData={initialData}>
-            <FormItem name="account">
-              <Input label={lang.common.form.label.account} addonBefore={<HiUser />} />
+            <FormItem name="email">
+              <Input label={lang.common.form.label.email} addonBefore={<HiMail />} />
             </FormItem>
             <FormItem name="password">
               <InputPassword label={lang.common.form.label.password} addonBefore={<HiLockClosed />} />
             </FormItem>
+
+            <Space justify="end">
+              <span className="form-link">{lang.auth.signIn.forgot}?</span>
+            </Space>
 
             <div className="form-actions">
               <Button rootClassName="actions-btn">{lang.auth.signIn.title}</Button>

@@ -39,11 +39,10 @@ const CustomerFormModal: React.FC<CustomerFormModalProps> = ({ lang, handleOpenP
   };
 
   const initialData: Customer = {
-    account: "account",
+    email: "jack@example.com",
     firstName: "Jack",
     lastName: "Williams",
     phone: "0793229970",
-    email: "jack@example.com",
     gender: EGender.MALE,
     birthday: new Date("1994-11-28"),
     address_en: "79/24/13 Au Co str",
@@ -69,8 +68,8 @@ const CustomerFormModal: React.FC<CustomerFormModalProps> = ({ lang, handleOpenP
             </Space>
           </Col>
           <Col xs={24} md={18} lg={18} span={18}>
-            <FormItem name="account" disabled>
-              <Input label={lang.common.form.label.account} />
+            <FormItem name="email" disabled>
+              <Input label={lang.common.form.label.email} />
             </FormItem>
             <Button ghost color="red" onClick={handleOpenPassword}>
               {lang.customer.modal.action}
@@ -100,8 +99,8 @@ const CustomerFormModal: React.FC<CustomerFormModalProps> = ({ lang, handleOpenP
             </FormItem>
           </Col>
           <Col {...colProps}>
-            <FormItem name="email">
-              <Input required label={lang.common.form.label.email} />
+            <FormItem name="gender">
+              <Select optional options={gender} label={lang.common.form.label.gender} />
             </FormItem>
           </Col>
         </Row>
@@ -110,11 +109,6 @@ const CustomerFormModal: React.FC<CustomerFormModalProps> = ({ lang, handleOpenP
           <Col {...colProps}>
             <FormItem name="birthday">
               <DatePicker optional label={lang.common.form.label.birthday} />
-            </FormItem>
-          </Col>
-          <Col {...colProps}>
-            <FormItem name="gender">
-              <Select optional options={gender} label={lang.common.form.label.gender} />
             </FormItem>
           </Col>
         </Row>

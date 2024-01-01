@@ -10,8 +10,6 @@ interface AppLangProps {
 const AppLang: React.FC<AppLangProps> = ({ children }) => {
   const searchParams = useSearchParams()
 
-  console.log(searchParams.get('lang'))
-
   return <React.Fragment>{children}</React.Fragment>;
 };
 

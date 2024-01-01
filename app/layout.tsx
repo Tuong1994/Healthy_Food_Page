@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import Header from "@/components/Page/Header";
-import Footer from "@/components/Page/Footer";
 import AppContainer from "@/components/Page/AppContainer";
-import FooterMobile from "@/components/Mobile/FooterMobile";
-import GridProvider from "@/components/UI/Grid/Provider";
 import "@/style/main.scss";
 
 const poppins = Poppins({
@@ -23,15 +19,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={poppins.className}>
         <AppContainer>{children}</AppContainer>
-        {/* <GridProvider>
-          <Header />
-          <AppContainer>{children}</AppContainer>
-          <Footer />
-
-          <FooterMobile />
-
-          <div id="portal"></div>
-        </GridProvider> */}
       </body>
     </html>
   );
