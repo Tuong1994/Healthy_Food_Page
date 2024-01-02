@@ -8,7 +8,7 @@ import cart_vn from "./cart";
 import payment_vn from "./payment";
 import delivery_vn from "./delivery";
 import exchange_vn from "./exchange";
-import customer_vn from "./customer_vn";
+import customer_vn from "./customer";
 import options_vn from "./options";
 import search_vn from "./search";
 import favorite_vn from "./favorite";

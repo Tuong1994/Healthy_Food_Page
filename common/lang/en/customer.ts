@@ -15,6 +15,8 @@ const customer_en = {
     action: "Change password",
     personal: "Personal information",
     location: "Location information",
+    more: "More information",
+    close: "Close",
   },
 };
 

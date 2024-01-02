@@ -15,6 +15,8 @@ const customer_vn = {
     action: "Đổi mật khẩu",
     personal: "Thông tin cá nhân",
     location: "Thông tin địa điểm",
+    more: 'Thông tin khác',
+    close: 'Đóng'
   },
 };
 

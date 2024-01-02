@@ -4,9 +4,9 @@ import type { Lang } from "@/common/type";
 import type { ModalProps } from "@/components/UI/Modal";
 import type { GridRowProps } from "@/components/UI/Grid/Row";
 import { EGender, ERole } from "@/services/customer/enum";
-import { useSelectOption } from "@/hooks";
 import { GridColProps } from "@/components/UI/Grid/Col";
 import { Customer } from "@/services/customer/type";
+import { useSelectOption } from "@/hooks";
 
 const { Space, Modal, Button, Divider, Grid } = UI;
 
@@ -25,6 +25,8 @@ interface CustomerFormModalProps extends ModalProps {
 
 const CustomerFormModal: React.FC<CustomerFormModalProps> = ({ lang, handleOpenPassword, ...restProps }) => {
   const { gender } = useSelectOption();
+
+  const [showMore, setShowMore] = React.useState<boolean>(false);
 
   const rowProps: GridRowProps = {
     gutters: [5, 5],
@@ -53,9 +55,12 @@ const CustomerFormModal: React.FC<CustomerFormModalProps> = ({ lang, handleOpenP
     role: ERole.CUSTOMER,
   };
 
+  const handleShowMore = () => setShowMore(!showMore);
+
   return (
     <Modal
       color="green"
+      rootClassName="customer-modal"
       head={lang.customer.modal.title}
       okButtonTitle={lang.common.actions.save}
       {...restProps}
@@ -113,43 +118,55 @@ const CustomerFormModal: React.FC<CustomerFormModalProps> = ({ lang, handleOpenP
           </Col>
         </Row>
 
-        <Divider>
-          <Space>
-            <span>{lang.customer.modal.location}</span>
-            <span>({lang.common.form.label.optional})</span>
-          </Space>
-        </Divider>
+        {!showMore && (
+          <button className="modal-showmore" onClick={handleShowMore}>
+            {lang.customer.modal.more}
+          </button>
+        )}
 
-        <Row {...rowProps}>
-          <Col {...colProps}>
-            <FormItem name="address_en">
-              <Input label={lang.common.form.label.address_en} />
-            </FormItem>
-          </Col>
-          <Col {...colProps}>
-            <FormItem name="address_vn">
-              <Input label={lang.common.form.label.address_vn} />
-            </FormItem>
-          </Col>
-        </Row>
+        {showMore && (
+          <React.Fragment>
+            <Divider>
+              <Space align="middle">
+                <span>{lang.customer.modal.location}</span>
+                <button className="modal-showmore" onClick={handleShowMore}>
+                  ({lang.customer.modal.close})
+                </button>
+              </Space>
+            </Divider>
 
-        <Row {...rowProps}>
-          <Col xs={24} md={8} lg={8} span={8}>
-            <FormItem name="cityCode">
-              <Select label={lang.common.form.label.city} />
-            </FormItem>
-          </Col>
-          <Col xs={24} md={8} lg={8} span={8}>
-            <FormItem name="districtCode">
-              <Select label={lang.common.form.label.district} />
-            </FormItem>
-          </Col>
-          <Col xs={24} md={8} lg={8} span={8}>
-            <FormItem name="wardCode">
-              <Select label={lang.common.form.label.ward} />
-            </FormItem>
-          </Col>
-        </Row>
+            <Row {...rowProps}>
+              <Col {...colProps}>
+                <FormItem name="address_en">
+                  <Input label={lang.common.form.label.address_en} />
+                </FormItem>
+              </Col>
+              <Col {...colProps}>
+                <FormItem name="address_vn">
+                  <Input label={lang.common.form.label.address_vn} />
+                </FormItem>
+              </Col>
+            </Row>
+
+            <Row {...rowProps}>
+              <Col xs={24} md={8} lg={8} span={8}>
+                <FormItem name="cityCode">
+                  <Select label={lang.common.form.label.city} />
+                </FormItem>
+              </Col>
+              <Col xs={24} md={8} lg={8} span={8}>
+                <FormItem name="districtCode">
+                  <Select label={lang.common.form.label.district} />
+                </FormItem>
+              </Col>
+              <Col xs={24} md={8} lg={8} span={8}>
+                <FormItem name="wardCode">
+                  <Select label={lang.common.form.label.ward} />
+                </FormItem>
+              </Col>
+            </Row>
+          </React.Fragment>
+        )}
       </Form>
     </Modal>
   );
