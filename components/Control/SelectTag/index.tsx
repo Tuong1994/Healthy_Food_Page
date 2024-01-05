@@ -1,14 +1,15 @@
-"use client";
+'use client'
 
 import React from "react";
 import { useFormContext } from "react-hook-form";
 import { ControlColor, ControlShape, Option, SelectOptions } from "../type";
 import { ComponentSize } from "@/common/type";
-import { useRender, useClickOutside, useDetectBottom, useLang } from "@/hooks";
+import { useRender, useClickOutside, useDetectBottom } from "@/hooks";
 import SelectTagControl from "./Control";
 import SelectOption from "./Option";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
+import useLayout from "@/components/UI/Layout/useLayout";
 import utils from "@/utils";
 
 export interface SelectTagProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -25,13 +26,13 @@ export interface SelectTagProps extends React.InputHTMLAttributes<HTMLInputEleme
   sizes?: ComponentSize;
   color?: ControlColor;
   shape?: ControlShape;
-  async?: boolean;
-  loading?: boolean;
   total?: number;
   limit?: number;
-  hasClear?: boolean;
+  async?: boolean;
+  loading?: boolean;
   required?: boolean;
   optional?: boolean;
+  hasClear?: boolean;
   onChangeSearch?: (text: string) => void;
   onChangeSelect?: (tags: any[]) => void;
   onChangePage?: (page: number) => void;
@@ -54,13 +55,13 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
     disabled,
     options = [],
     defaultTags = [],
-    async = false,
-    loading = false,
     total = 0,
     limit = 10,
+    async = false,
+    loading = false,
+    hasClear = true,
     required,
     optional,
-    hasClear = true,
     onChangeSearch,
     onChangeSelect,
     onChangePage,
@@ -68,9 +69,11 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
   },
   ref
 ) => {
-  const { lang } = useLang();
-
   const rhfMethods = useFormContext();
+
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
 
   const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = React.useContext(FormContext);
 
@@ -96,15 +99,17 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
 
   const totalPages = Math.ceil(total / limit);
 
+  const triggerValidation = React.useCallback(() => {
+    if (touched && !dropdown && !rhfValue) rhfMethods.trigger(rhfName);
+    else if (touched && !dropdown && rhfValue) rhfMethods.trigger(rhfName);
+    if (touched && !dropdown) setTouched(false);
+  }, [touched, dropdown, rhfMethods, rhfName, rhfValue]);
+
   // Trigger validation
   React.useEffect(() => {
     if (!isRhf) return;
-
-    if (touched && !dropdown && !rhfValue) rhfMethods.trigger(rhfName);
-    else if (touched && !dropdown && rhfValue) rhfMethods.trigger(rhfName);
-
-    if (touched && !dropdown) setTouched(false);
-  }, [touched, dropdown, isRhf, rhfName, rhfValue]);
+    triggerValidation();
+  }, [isRhf, triggerValidation]);
 
   // Set default option
   React.useEffect(() => {
@@ -114,9 +119,9 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
 
   const controlPlaceHolder = React.useMemo(() => {
     if (placeholder) return placeholder;
-    if (dropdown) return lang.common.form.placeholder.search;
-    return lang.common.form.placeholder.select;
-  }, [lang, placeholder, dropdown]);
+    if (dropdown) return "Search";
+    return "Select option";
+  }, [placeholder, dropdown]);
 
   const controlDisabled = rhfDisabled ? rhfDisabled : disabled;
 
@@ -126,9 +131,11 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
 
   const controlShape = isRhf ? rhfShape : shape;
 
-  const showClearIcon = Boolean(search && hasClear && !controlDisabled);
+  const showClearIcon = Boolean(hasClear && search && !controlDisabled);
 
   const showOptional = required ? false : optional;
+
+  const themeClassName = `select-${theme}`;
 
   const sizeClassName = `select-${controlColor}`;
 
@@ -149,6 +156,7 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
     shapeClassName,
     bottomClassName,
     errorClassName,
+    themeClassName,
     rootClassName,
     disabledClassName
   );
@@ -223,7 +231,7 @@ const SelectTag: React.ForwardRefRenderFunction<HTMLInputElement, SelectTagProps
         <label style={labelStyle} className={controlLabelClassName}>
           {required && <span className="label-required">*</span>}
           <span>{label}</span>
-          {showOptional && <span className="label-optional">({lang.common.form.label.optional})</span>}
+          {showOptional && <span className="label-optional">(Optional)</span>}
         </label>
       )}
 

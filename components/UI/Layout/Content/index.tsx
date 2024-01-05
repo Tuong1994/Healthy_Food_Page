@@ -2,7 +2,7 @@
 
 import React from "react";
 import LayoutContext from "../Context";
-import useLayoutStore from "../LayoutStore";
+import useLayout from "../useLayout";
 import utils from "@/utils";
 
 export interface LayoutContentProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -16,13 +16,26 @@ const LayoutContent: React.ForwardRefRenderFunction<HTMLDivElement, LayoutConten
 ) => {
   const { layouted } = React.useContext(LayoutContext);
 
-  const shrinked = useLayoutStore((state) => state.shrinked);
+  const { layoutValue } = useLayout();
+
+  const { shrinked, resizeContent, layoutTheme: theme } = layoutValue;
 
   const layoutClassName = layouted ? "content-layout" : "";
 
+  const resizeClassName = resizeContent ? "content-resize" : "";
+
   const shrinkClassName = shrinked ? "content-shrinked" : "";
 
-  const className = utils.formatClassName("content", layoutClassName, shrinkClassName, rootClassName);
+  const themeClassName = `content-${theme}`;
+
+  const className = utils.formatClassName(
+    "content",
+    layoutClassName,
+    shrinkClassName,
+    resizeClassName,
+    themeClassName,
+    rootClassName
+  );
 
   return (
     <div ref={ref} {...restProps} className={className}>

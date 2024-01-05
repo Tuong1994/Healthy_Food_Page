@@ -25,9 +25,6 @@
         width: $w-full;
         border: unset;
         background: transparent;
-        &::placeholder {
-          color: $text-slate;
-        }
       }
       .control-action {
         cursor: pointer;
@@ -209,6 +206,24 @@
     }
     &:focus-within {
       border-color: $bg-pink;
+    }
+  }
+}
+
+// Theme
+.textarea-light {
+  .textarea-group {
+    background: $bg-white;
+  }
+}
+
+.textarea-dark {
+  .textarea-group {
+    background: $bg-deep-blue;
+    .control-action {
+      &:hover path {
+        color: $text-white !important;
+      }
     }
   }
 }

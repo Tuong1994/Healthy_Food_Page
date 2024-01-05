@@ -4,11 +4,12 @@ import React from "react";
 import { useFormContext } from "react-hook-form";
 import { ControlColor, ControlShape, Option, SelectOptions } from "../type";
 import { ComponentSize } from "@/common/type";
-import { useRender, useClickOutside, useDetectBottom, useLang } from "@/hooks";
+import { useRender, useClickOutside, useDetectBottom } from "@/hooks";
 import SelectControl from "./Control";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
 import SelectOption from "./Option";
+import useLayout from "@/components/UI/Layout/useLayout";
 import utils from "@/utils";
 
 export interface SelectProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -25,13 +26,13 @@ export interface SelectProps extends React.InputHTMLAttributes<HTMLInputElement>
   sizes?: ComponentSize;
   color?: ControlColor;
   shape?: ControlShape;
-  async?: boolean;
-  loading?: boolean;
   total?: number;
   limit?: number;
-  hasClear?: boolean;
+  async?: boolean;
+  loading?: boolean;
   required?: boolean;
   optional?: boolean;
+  hasClear?: boolean;
   onChangeSearch?: (text: string) => void;
   onChangeSelect?: (value: string | number | boolean) => void;
   onChangePage?: (page: number) => void;
@@ -54,11 +55,11 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
     disabled,
     options = [],
     defaultValue,
-    hasClear = true,
-    async = false,
-    loading = false,
     total = 0,
     limit = 10,
+    async = false,
+    loading = false,
+    hasClear = true,
     required,
     optional,
     onChangeSearch,
@@ -68,9 +69,11 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
   },
   ref
 ) => {
-  const { lang } = useLang();
-
   const rhfMethods = useFormContext();
+
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
 
   const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = React.useContext(FormContext);
 
@@ -96,15 +99,17 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
 
   const totalPages = Math.ceil(total / limit);
 
+  const triggerValidation = React.useCallback(() => {
+    if (touched && !dropdown && !rhfValue) rhfMethods.trigger(rhfName);
+    else if (touched && !dropdown && rhfValue) rhfMethods.trigger(rhfName);
+    if (touched && !dropdown) setTouched(false);
+  }, [touched, dropdown, rhfMethods, rhfName, rhfValue]);
+
   // Trigger validation
   React.useEffect(() => {
     if (!isRhf) return;
-
-    if (touched && !dropdown && !rhfValue) rhfMethods.trigger(rhfName);
-    else if (touched && !dropdown && rhfValue) rhfMethods.trigger(rhfName);
-
-    if (touched && !dropdown) setTouched(false);
-  }, [touched, dropdown, isRhf, rhfName, rhfValue]);
+    triggerValidation();
+  }, [isRhf, triggerValidation]);
 
   // Set default option
   React.useEffect(() => {
@@ -116,9 +121,9 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
 
   const controlPlaceHolder = React.useMemo(() => {
     if (placeholder) return placeholder;
-    if (dropdown) return lang.common.form.placeholder.search;
-    return lang.common.form.placeholder.select;
-  }, [lang, placeholder, dropdown]);
+    if (dropdown) return "Search";
+    return "Select option";
+  }, [placeholder, dropdown]);
 
   const controlDisabled = rhfDisabled ? rhfDisabled : disabled;
 
@@ -131,6 +136,8 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
   const showClearIcon = Boolean((search || selectedOption) && hasClear && !controlDisabled);
 
   const showOptional = required ? false : optional;
+
+  const themeClassName = `select-${theme}`;
 
   const sizeClassName = `select-${controlSize}`;
 
@@ -151,6 +158,7 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
     shapeClassName,
     bottomClassName,
     errorClassName,
+    themeClassName,
     rootClassName,
     disabledClassName
   );
@@ -216,7 +224,7 @@ const Select: React.ForwardRefRenderFunction<HTMLInputElement, SelectProps> = (
         <label style={labelStyle} className={controlLabelClassName}>
           {required && <span className="label-required">*</span>}
           <span>{label}</span>
-          {showOptional && <span className="label-optional">({lang.common.form.label.optional})</span>}
+          {showOptional && <span className="label-optional">(Optional)</span>}
         </label>
       )}
 

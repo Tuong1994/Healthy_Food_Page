@@ -39,9 +39,6 @@
         width: $w-full;
         border: unset;
         background: transparent;
-        &::placeholder {
-          color: $text-slate;
-        }
       }
       .control-action {
         display: flex;
@@ -222,6 +219,24 @@
     }
     &:focus-within {
       border-color: $bg-pink;
+    }
+  }
+}
+
+// Theme
+.input-light {
+  .input-group {
+    background: $bg-white;
+  }
+}
+
+.input-dark {
+  .input-group {
+    background: $bg-deep-blue;
+    .control-action {
+      &:hover path {
+        color: $text-white !important;
+      }
     }
   }
 }

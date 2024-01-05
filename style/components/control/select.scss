@@ -43,9 +43,6 @@
           width: $w-full;
           border: unset;
           background: transparent;
-          &::placeholder {
-            color: $text-slate;
-          }
         }
         .control-action {
           display: flex;
@@ -96,7 +93,6 @@
     .wrap-option {
       min-width: max-content;
       width: $w-full;
-      border: 0.5px solid $bg-gray;
       box-shadow: 0 0 10px $bg-gray;
       background: $bg-white;
       overflow: hidden;
@@ -111,7 +107,6 @@
         .list-item {
           padding: $p-1 - 0.6 $p-1;
           margin: 0;
-          border-bottom: 0.5px solid $bg-gray;
           cursor: pointer;
           display: flex;
           align-items: center;
@@ -517,5 +512,30 @@
     .list-item-selected {
       background: $bg-pink;
     }
+  }
+}
+
+// Theme
+.select-white {
+  .wrap-group {
+    background: $bg-white;
+  }
+  .wrap-option {
+    background: $bg-white;
+  }
+}
+
+.select-dark {
+  .wrap-group {
+    background: $bg-deep-blue !important;
+    .control-action {
+      &:hover path {
+        color: $text-white !important;
+      }
+    }
+  }
+  .wrap-option {
+    background: $bg-deep-blue !important;
+    box-shadow: 0 0 10px $bg-black !important;
   }
 }

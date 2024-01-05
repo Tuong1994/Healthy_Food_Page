@@ -12,11 +12,11 @@
       margin-right: 0;
     }
     .item-label {
-      font-size: $text-2xs;
+      font-size: $text-xs;
       color: $text-gray;
       transition: all $transition-time-sm $transition-fn;
       * {
-        font-size: $text-2xs;
+        font-size: $text-xs;
         color: $text-gray;
         transition: all $transition-time-sm $transition-fn;
       }
@@ -42,6 +42,33 @@
       align-items: center;
       * {
         color: $text-gray;
+      }
+    }
+  }
+}
+
+// Theme
+.breadcrumb-light {
+  .breadcrumb-item {
+    .item-label {
+      &:hover {
+        color: $text-black;
+        * {
+          color: $text-black;
+        }
+      }
+    }
+  }
+}
+
+.breadcrumb-dark {
+  .breadcrumb-item {
+    .item-label {
+      &:hover {
+        color: $text-white;
+        * {
+          color: $text-white;
+        }
       }
     }
   }

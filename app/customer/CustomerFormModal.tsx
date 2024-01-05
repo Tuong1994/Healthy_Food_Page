@@ -14,9 +14,9 @@ const { Row, Col } = Grid;
 
 const { Form, FormItem, Upload, Input, Select, DatePicker } = Control;
 
-const { Image } = Upload;
+const { ImageUpload } = Upload;
 
-const { SingleImageUpload } = Image;
+const { SingleImageUpload } = ImageUpload;
 
 interface CustomerFormModalProps extends ModalProps {
   lang: Lang;

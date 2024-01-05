@@ -1,10 +1,9 @@
-"use client";
-
 import React from "react";
 import TabsHead from "./Head";
 import { TabsItems } from "./type";
 import { ComponentColor } from "@/common/type";
 import utils from "@/utils";
+import useLayout from "../Layout/useLayout";
 
 export interface TabsProps extends React.HTMLAttributes<HTMLDivElement> {
   rootClassName?: string;
@@ -31,11 +30,17 @@ const Tabs: React.ForwardRefRenderFunction<HTMLDivElement, TabsProps> = (
   },
   ref
 ) => {
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
   const [tabActive, setTabActive] = React.useState<string>("1");
 
   const colorClassName = `tabs-${color}`;
 
-  const mainClassName = utils.formatClassName("tabs", colorClassName, rootClassName);
+  const themeClassName = `tabs-${theme}`;
+
+  const mainClassName = utils.formatClassName("tabs", colorClassName, themeClassName, rootClassName);
 
   const tabsHeadClassName = utils.formatClassName("tabs-head", headClassName);
 

@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { ButtonProps } from "../Button";
 import { ComponentColor } from "@/common/type";
@@ -8,6 +6,7 @@ import TableHead from "./TableHead";
 import TableBody from "./TableBody";
 import TableEmpty from "./TableEmpty";
 import TableLoading from "./TableLoading";
+import useLayout from "../Layout/useLayout";
 import utils from "@/utils";
 
 export type TableColor = Exclude<ComponentColor, "black" | "white" | "red" | "gray">;
@@ -51,11 +50,17 @@ const Table = <M extends object>(
   }: TableProps<M>,
   ref: React.ForwardedRef<HTMLTableElement>
 ) => {
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
   const [rowSelectedKeys, setRowSelectedKeys] = React.useState<React.Key[]>([]);
 
   const colorClassName = `table-${color}`;
 
-  const mainClassName = utils.formatClassName("table", colorClassName, rootClassName);
+  const themeClassName = `table-${theme}`;
+
+  const mainClassName = utils.formatClassName("table", colorClassName, themeClassName, rootClassName);
 
   React.useEffect(() => {
     onSelectRows?.(rowSelectedKeys);

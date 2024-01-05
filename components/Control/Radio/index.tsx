@@ -1,10 +1,11 @@
-"use client";
+'use client'
 
 import React from "react";
 import { useFormContext } from "react-hook-form";
 import { ComponentColor, ComponentSize } from "@/common/type";
 import FormContext from "../Form/FormContext";
 import FormItemContext from "../Form/FormItemContext";
+import useLayout from "@/components/UI/Layout/useLayout";
 import utils from "@/utils";
 
 export interface RadioProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -17,6 +18,8 @@ export interface RadioProps extends React.InputHTMLAttributes<HTMLInputElement> 
   label?: React.ReactNode | React.ReactNode[];
   sizes?: ComponentSize;
   color?: Exclude<ComponentColor, "gray">;
+  required?: boolean;
+  optional?: boolean;
   onCheck?: (value: any) => void;
 }
 
@@ -33,6 +36,8 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (
     sizes = "md",
     color = "blue",
     checked = false,
+    required,
+    optional,
     disabled,
     value,
     onCheck,
@@ -42,6 +47,10 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (
   ref
 ) => {
   const rhfMethods = useFormContext();
+
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
 
   const { color: rhfColor, sizes: rhfSizes } = React.useContext(FormContext);
 
@@ -55,6 +64,8 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (
 
   const controlColor = isRhf ? rhfColor : color;
 
+  const showOptional = required ? false : optional;
+
   const controlSize = isRhf ? rhfSizes : sizes;
 
   const gapClassName = !isRhf ? "radio-gap" : "";
@@ -67,11 +78,14 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (
 
   const disabledClassName = controlDisabled ? "radio-group-disabled" : "";
 
+  const themeClassName = `radio-${theme}`;
+
   const mainClassName = utils.formatClassName(
     "radio",
     gapClassName,
     sizeClassName,
     colorClassName,
+    themeClassName,
     rootClassName
   );
 
@@ -115,7 +129,9 @@ const Radio: React.ForwardRefRenderFunction<HTMLInputElement, RadioProps> = (
 
         {label && (
           <div style={labelStyle} className={controlLabelClassName}>
-            {label}
+            {required && <span className="label-required">*</span>}
+            <span>{label}</span>
+            {showOptional && <span className="label-optional">(Optional)</span>}
           </div>
         )}
       </label>

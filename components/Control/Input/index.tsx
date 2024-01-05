@@ -5,9 +5,9 @@ import { HiXCircle } from "react-icons/hi2";
 import { useFormContext } from "react-hook-form";
 import { ControlColor, ControlShape, InputValue } from "../type";
 import { ComponentSize } from "@/common/type";
-import { useLang } from "@/hooks";
 import FormItemContext from "../Form/FormItemContext";
 import FormContext from "../Form/FormContext";
+import useLayout from "@/components/UI/Layout/useLayout";
 import utils from "@/utils";
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -42,7 +42,7 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
     sizes = "md",
     color = "blue",
     shape = "square",
-    placeholder,
+    placeholder = "Enter information...",
     disabled,
     required,
     optional,
@@ -53,9 +53,11 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   },
   ref
 ) => {
-  const { lang } = useLang();
-
   const rhfMethods = useFormContext();
+
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
 
   const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = React.useContext(FormContext);
 
@@ -74,9 +76,11 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 
   const controlShape = isRhf ? rhfShape : shape;
 
-  const showClearIcon = inputValue && !controlDisabled && hasClear;
+  const showClearIcon = hasClear && inputValue && !controlDisabled;
 
   const showOptional = required ? false : optional;
+
+  const themClassName = `input-${theme}`;
 
   const sizeClassName = `input-${controlSize}`;
 
@@ -94,6 +98,7 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
     sizeClassName,
     shapeClassName,
     errorClassName,
+    themClassName,
     rootClassName,
     disabledClassName
   );
@@ -142,7 +147,7 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
           <div style={labelStyle} className={controlLabelClassName}>
             {required && <span className="label-required">*</span>}
             <span>{label}</span>
-            {showOptional && <span className="label-optional">({lang.common.form.label.optional})</span>}
+            {showOptional && <span className="label-optional">(Optional)</span>}
           </div>
         )}
 
@@ -156,7 +161,7 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
               type="text"
               value={inputValue}
               disabled={controlDisabled}
-              placeholder={placeholder ?? lang.common.form.placeholder.type}
+              placeholder={placeholder}
               className={controlInputClassName}
               onChange={onChangeFn}
               onBlur={onBlurFn}

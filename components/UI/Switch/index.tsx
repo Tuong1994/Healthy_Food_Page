@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import React from "react";
 import { ComponentColor, ComponentSize } from "@/common/type";
@@ -8,10 +8,11 @@ export interface SwitchProps extends React.InputHTMLAttributes<HTMLInputElement>
   rootClassName?: string;
   sizes?: ComponentSize;
   color?: Exclude<ComponentColor, "black" | "white" | "gray">;
+  onSwitch?: (switched: boolean) => void;
 }
 
 const Switch: React.ForwardRefRenderFunction<HTMLInputElement, SwitchProps> = (
-  { rootClassName = "", sizes = "md", color = "blue", ...restProps },
+  { rootClassName = "", sizes = "md", color = "blue", onSwitch, ...restProps },
   ref
 ) => {
   const sizeClassName = `switch-${sizes}`;
@@ -20,7 +21,9 @@ const Switch: React.ForwardRefRenderFunction<HTMLInputElement, SwitchProps> = (
 
   const className = utils.formatClassName("switch", colorClassName, sizeClassName, rootClassName);
 
-  return <input ref={ref} type="checkbox" {...restProps} className={className} />;
+  const handleSwitch = (e: React.ChangeEvent<HTMLInputElement>) => onSwitch?.(e.target.checked);
+
+  return <input ref={ref} type="checkbox" {...restProps} className={className} onChange={handleSwitch} />;
 };
 
 export default React.forwardRef(Switch);

@@ -1,15 +1,30 @@
 .content {
   width: $w-full;
-  transition: all $transition-time-md $transition-fn;
+  background: $bg-white;
+  transition: all $transition-time-sm $transition-fn;
 }
 
 .content-layout {
-  width: calc($w-full - $w-10 * 2.5);
-  margin-left: $w-10 * 2.5;
   margin-top: $m-5 + 1;
+  @include respond(mdTablet) {
+    margin-top: $m-2;
+  }
+}
+
+.content-resize {
+  margin-left: 25rem;
+  @include respond(mdTablet) {
+    margin-left: 0;
+  }
 }
 
 .content-shrinked {
-  width: calc($w-full - $w-6);
-  margin-left: $w-6;
+  margin-left: 6rem;
+}
+
+.content-dark {
+  background: $bg-deep-blue;
+  * {
+    color: $text-white;
+  }
 }

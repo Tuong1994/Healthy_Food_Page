@@ -43,9 +43,6 @@
           width: $w-full;
           border: unset;
           background: transparent;
-          &::placeholder {
-            color: $text-slate;
-          }
         }
         .control-action {
           display: flex;
@@ -96,7 +93,6 @@
     .wrap-option {
       min-width: max-content;
       width: $w-full;
-      border: 0.5px solid $bg-gray;
       box-shadow: 0 0 10px $bg-gray;
       background: $bg-white;
       overflow: hidden;
@@ -113,7 +109,6 @@
           margin: 0;
           height: max-content;
           cursor: pointer;
-          border-bottom: 0.5px solid $bg-gray;
           transition: all $transition-time-sm $transition-fn;
           &:last-child {
             border: unset;
@@ -552,5 +547,30 @@
     .item-inner-selected {
       background: $bg-pink;
     }
+  }
+}
+
+// Theme
+.tree-select-white {
+  .wrap-group {
+    background: $bg-white;
+  }
+  .wrap-option {
+    background: $bg-white;
+  }
+}
+
+.tree-select-dark {
+  .wrap-group {
+    background: $bg-deep-blue !important;
+    .control-action {
+      &:hover path {
+        color: $text-white !important;
+      }
+    }
+  }
+  .wrap-option {
+    background: $bg-deep-blue !important;
+    box-shadow: 0 0 10px $bg-black !important;
   }
 }

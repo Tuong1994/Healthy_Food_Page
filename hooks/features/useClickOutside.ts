@@ -4,7 +4,7 @@ const useClickOutside = (
   ref: React.RefObject<any>,
   setTrigger: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-  if(typeof window === 'undefined') return
+  if (typeof window === "undefined") return;
 
   const handleClickOutside = (e: Event) => {
     if (ref.current && !ref.current.contains(e.target)) {
@@ -12,9 +12,10 @@ const useClickOutside = (
     }
   };
 
-  window.addEventListener("mousedown", handleClickOutside);
-
-  return () => window.removeEventListener("mousedown", handleClickOutside);
+  React.useEffect(() => {
+    window.addEventListener("mousedown", handleClickOutside);
+    return () => window.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 };
 
 export default useClickOutside;

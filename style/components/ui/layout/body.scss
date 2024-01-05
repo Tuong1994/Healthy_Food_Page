@@ -1,5 +1,8 @@
 .body {
-  height: calc($h-screen - $h-6);
+  height: $h-full;
   display: flex;
   position: relative;
+  @include respond(mdTablet) {
+    display: block;
+  }
 }

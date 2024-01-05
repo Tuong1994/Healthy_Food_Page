@@ -2,6 +2,7 @@
   width: max-content;
   position: relative;
   .dropdown-title {
+    padding: $p-1 - 0.5 0;
     user-select: none;
     cursor: pointer;
   }
@@ -13,11 +14,10 @@
     border-radius: $rounded;
     overflow: hidden;
     opacity: 0;
-    visibility: hidden;
     position: absolute;
-    top: 110%;
+    top: 100%;
     z-index: 5;
-    transition: all $transition-time-xs $transition-fn;
+    transition: opacity $transition-time-sm $transition-fn;
     .wrap-item {
       padding: $p-1 - 0.4 $p-2;
       cursor: pointer;
@@ -28,19 +28,8 @@
     }
   }
   .dropdown-wrap-active {
-    top: 120%;
     opacity: 1;
-    visibility: visible;
-    animation: dropdown $transition-time-xs $transition-fn;
-  }
-}
-
-// Hover
-.dropdown-hover {
-  &:hover .dropdown-wrap {
-    opacity: 1;
-    top: 120%;
-    visibility: visible;
+    animation: fade $transition-time-sm $transition-fn;
   }
 }
 
@@ -54,5 +43,19 @@
 .dropdown-right {
   .dropdown-wrap {
     right: 0;
+  }
+}
+
+// Theme
+.dropdown-white {
+  .dropdown-wrap {
+    background: $bg-white;
+  }
+}
+
+.dropdown-dark {
+  .dropdown-wrap {
+    background: $bg-deep-blue;
+    box-shadow: 0 0 10px $bg-black;
   }
 }

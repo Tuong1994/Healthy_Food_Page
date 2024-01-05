@@ -5,9 +5,9 @@ import { HiXCircle } from "react-icons/hi2";
 import { useFormContext } from "react-hook-form";
 import { ControlColor, ControlShape, InputValue } from "../type";
 import { ComponentSize } from "@/common/type";
-import { useLang } from "@/hooks";
 import FormItemContext from "../Form/FormItemContext";
 import FormContext from "../Form/FormContext";
+import useLayout from "@/components/UI/Layout/useLayout";
 import utils from "@/utils";
 
 export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -17,8 +17,6 @@ export interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   rootStyle?: React.CSSProperties;
   labelStyle?: React.CSSProperties;
   label?: React.ReactNode | React.ReactNode[];
-  addonBefore?: React.ReactNode | React.ReactNode[];
-  addonAfter?: React.ReactNode | React.ReactNode[];
   sizes?: ComponentSize;
   color?: ControlColor;
   shape?: ControlShape;
@@ -36,13 +34,11 @@ const TextArea: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProp
     rootStyle,
     labelStyle,
     label,
-    addonBefore,
-    addonAfter,
     value = "",
     sizes = "md",
     color = "blue",
     shape = "square",
-    placeholder,
+    placeholder = "Enter information...",
     rows = 5,
     disabled,
     required,
@@ -54,9 +50,11 @@ const TextArea: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProp
   },
   ref
 ) => {
-  const { lang } = useLang();
-
   const rhfMethods = useFormContext();
+
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
 
   const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = React.useContext(FormContext);
 
@@ -75,9 +73,11 @@ const TextArea: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProp
 
   const controlShape = isRhf ? rhfShape : shape;
 
-  const showClearIcon = inputValue && !controlDisabled && hasClear;
+  const showClearIcon = hasClear && inputValue && !controlDisabled;
 
   const showOptional = required ? false : optional;
+
+  const themClassName = `textarea-${theme}`;
 
   const sizeClassName = `textarea-${controlSize}`;
 
@@ -95,6 +95,7 @@ const TextArea: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProp
     sizeClassName,
     shapeClassName,
     errorClassName,
+    themClassName,
     rootClassName,
     disabledClassName
   );
@@ -143,7 +144,7 @@ const TextArea: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProp
           <div style={labelStyle} className={controlLabelClassName}>
             {required && <span className="label-required">*</span>}
             <span>{label}</span>
-            {showOptional && <span className="label-optional">({lang.common.form.label.optional})</span>}
+            {showOptional && <span className="label-optional">(Optional)</span>}
           </div>
         )}
 
@@ -155,7 +156,7 @@ const TextArea: React.ForwardRefRenderFunction<HTMLTextAreaElement, TextAreaProp
               rows={rows}
               value={inputValue}
               disabled={controlDisabled}
-              placeholder={placeholder ?? lang.common.form.placeholder.type}
+              placeholder={placeholder}
               className={controlInputClassName}
               onChange={onChangeFn}
               onBlur={onBlurFn}
