@@ -1,4 +1,10 @@
 const options_en = {
+  sort: {
+    newest: "Newest",
+    oldest: "Oldest",
+    priceGoUp: "Price go up",
+    priceGoDown: "Price go down",
+  },
   gender: {
     male: "Male",
     female: "Female",

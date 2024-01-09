@@ -156,6 +156,10 @@
   background: $bg-white;
 }
 
+.button-dark.button-ghost {
+  background: $bg-deep-blue;
+}
+
 .button-ghost-blue {
   border-color: $bg-blue;
   *,
@@ -241,6 +245,23 @@
   }
   &::after {
     background: $bg-black-rgba-xs;
+  }
+}
+
+// Text
+.button-text {
+  border-color: transparent;
+  background: transparent;
+  color: $text-blue;
+  * {
+    color: $text-blue;
+  }
+  &::after,
+  &::before {
+    content: unset;
+  }
+  &:hover {
+    opacity: 0.6;
   }
 }
 

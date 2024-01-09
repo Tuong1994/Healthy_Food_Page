@@ -1,10 +1,6 @@
-"use client";
-
 import React from "react";
 import { UI } from "@/components";
-import { GridAppContext } from "@/components/UI/Grid/Context";
 import Link from "next/link";
-import ProductCardLike from "./ProductCardLike";
 
 const { Image, Badge } = UI;
 
@@ -19,17 +15,19 @@ const ProductCardImage: React.FC<ProductCardImageProps> = ({
   imgHeight,
   imageResponsiveClassName = "",
 }) => {
-  const { isPhone } = React.useContext(GridAppContext);
-
   return (
     <div className="product-card-image">
       <Link href="/product/detail">
-        <Image imgWidth={imgWidth} imgHeight={imgHeight} rootClassName={imageResponsiveClassName} alt="product" />
+        <Image
+          imgWidth={imgWidth}
+          imgHeight={imgHeight}
+          rootClassName={imageResponsiveClassName}
+          alt="product"
+        />
       </Link>
       <Badge shape="square" color="blue" rootClassName="image-badge">
         New
       </Badge>
-      {!isPhone && <ProductCardLike />}
     </div>
   );
 };

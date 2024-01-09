@@ -23,7 +23,7 @@ const ShipmentInfo: React.FC<ShipmentInfoProps> = ({ lang }) => {
       <InfoRow {...commonProps} label={lang.common.form.label.email} text="jack@example.com" />
       <InfoRow
         {...commonProps}
-        label={lang.common.form.label.address}
+        label={lang.common.form.label.fullAddress}
         text="79/24/13 Au Co Str, Ward 14, District 11, HCMC"
       />
       <InfoRow {...commonProps} label={lang.common.form.label.note} text="Be careful" />

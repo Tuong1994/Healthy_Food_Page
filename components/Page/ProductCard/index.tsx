@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { UI } from "@/components";
 import { GridAppContext } from "@/components/UI/Grid/Context";
@@ -57,11 +55,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <Paragraph rootClassName="product-card-price" strong size={16}>
           $100,000/kg
         </Paragraph>
-
         <ProductCardControl />
-
-        {isPhone && <ProductCardLike />}
       </div>
+      
+      <ProductCardLike />
     </Card>
   );
 };

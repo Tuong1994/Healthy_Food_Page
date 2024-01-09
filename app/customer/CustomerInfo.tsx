@@ -2,10 +2,14 @@ import React from "react";
 import { UI } from "@/components";
 import type { Lang } from "@/common/type";
 import type { InfoRowProps } from "@/components/UI/InfoRow";
+import { EGender } from "@/services/customer/enum";
 import { HiCalendar, HiPhone, HiUser } from "react-icons/hi2";
 import { HiLocationMarker, HiMail, HiPencilAlt } from "react-icons/hi";
+import { FaTransgender } from "react-icons/fa";
+import { useDisplayGender } from "@/hooks";
 import CustomerFormModal from "./CustomerFormModal";
 import CustomerPasswordModal from "./CustomerPasswordModal";
+import utils from "@/utils";
 
 const { Card, Avatar, Space, Divider, InfoRow, Tooltip, Button, Typography } = UI;
 
@@ -21,6 +25,7 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({ lang }) => {
   const [openPassword, setOpenPassword] = React.useState<boolean>(false);
 
   const commonProps: InfoRowProps = {
+    rootClassName: 'info-item',
     hasColon: false,
     labelProps: { style: { width: "auto" } },
     textProps: { weight: 400, strong: false },
@@ -42,7 +47,9 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({ lang }) => {
         <Space align="middle">
           <Avatar color="black" size={50} />
           <div className="info-group">
-            <Paragraph strong size={16}>{lang.customer.greeting}, User name</Paragraph>
+            <Paragraph strong size={16}>
+              {lang.customer.greeting}, User name
+            </Paragraph>
             <a href="#">
               <Button sizes="sm" color="black">
                 {lang.customer.admin}
@@ -59,14 +66,14 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({ lang }) => {
           </Tooltip>
         </Space>
 
-        <InfoRow {...commonProps} label={<HiUser />} text="Jack Williams" />
-        <InfoRow {...commonProps} label={<HiPhone />} text="079 322 9970" />
-        <InfoRow {...commonProps} label={<HiMail />} text="jack@example.com" />
-        <InfoRow {...commonProps} label={<HiUser />} text="Male" />
-        <InfoRow {...commonProps} label={<HiCalendar />} text="28/11/1994" />
+        <InfoRow {...commonProps} labelElement={<HiUser />} text="Jack Williams" />
+        <InfoRow {...commonProps} labelElement={<HiPhone />} text={utils.formatPhoneNumber('0793229970')} />
+        <InfoRow {...commonProps} labelElement={<HiMail />} text="jack@example.com" />
+        <InfoRow {...commonProps} labelElement={<FaTransgender />} textElement={useDisplayGender(EGender.MALE)} />
+        <InfoRow {...commonProps} labelElement={<HiCalendar />} text="28/11/1994" />
         <InfoRow
           {...commonProps}
-          label={<HiLocationMarker />}
+          labelElement={<HiLocationMarker />}
           text="79/24/13 Au Co Str, Ward 14, District 11, HCMC"
         />
       </Card>

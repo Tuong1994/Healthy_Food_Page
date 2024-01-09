@@ -11,6 +11,12 @@
         opacity: 0.6;
       }
     }
+    .info-item {
+      margin-bottom: $m-1 - 0.5;
+      &:last-child {
+        margin: 0;
+      }
+    }
   }
   .customer-table-pagination {
     margin: $m-1;

@@ -8,7 +8,7 @@ import { useLang, useDisplayOrderStatus, useDisplayPaymentMethod, useDisplayPaym
 import utils from "@/utils";
 import moment from "moment";
 
-const { Table, Image, Badge, Pagination } = UI;
+const { Table, Image, Pagination } = UI;
 
 interface CustomerOrderProps {}
 
@@ -104,19 +104,19 @@ const CustomerOrder: React.FC<CustomerOrderProps> = () => {
       id: "status",
       title: lang.common.table.head.status,
       dataIndex: "status",
-      render: (data: EOrderStatus) => <Badge color="blue">{useDisplayOrderStatus(data)}</Badge>,
+      render: (data: EOrderStatus) => <>{useDisplayOrderStatus(data)}</>,
     },
     {
       id: "paymentMethod",
       title: lang.common.table.head.paymentMethod,
       dataIndex: "paymentMethod",
-      render: (data: EPaymentMethod) => <Badge color="pink">{useDisplayPaymentMethod(data)}</Badge>,
+      render: (data: EPaymentMethod) => <>{useDisplayPaymentMethod(data)}</>,
     },
     {
       id: "paymentStatus",
       title: lang.common.table.head.paymentStatus,
       dataIndex: "paymentStatus",
-      render: (data: EPaymentStatus) => <Badge color="green">{useDisplayPaymentStatus(data)}</Badge>,
+      render: (data: EPaymentStatus) => <>{useDisplayPaymentStatus(data)}</>,
     },
     {
       id: "createdAt",

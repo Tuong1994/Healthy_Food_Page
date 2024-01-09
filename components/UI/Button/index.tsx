@@ -5,6 +5,7 @@ import { ComponentColor, ComponentSize } from "@/common/type";
 import { ControlShape } from "@/components/Control/type";
 import Spinner from "../Loading/Spinner";
 import FormContext from "@/components/Control/Form/FormContext";
+import useLayout from "../Layout/useLayout";
 import utils from "@/utils";
 
 type ButtonColor = Exclude<ComponentColor, "white" | "gray">;
@@ -15,6 +16,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   loading?: boolean;
   ghost?: boolean;
   disabled?: boolean;
+  text?: boolean;
   sizes?: ComponentSize;
   shape?: ControlShape;
   color?: ButtonColor;
@@ -30,11 +32,16 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
     ghost,
     color,
     disabled,
+    text,
     ...restProps
   },
   ref
 ) => {
   const { color: rhfColor, sizes: rhfSizes, shape: rhfShape } = React.useContext(FormContext);
+
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
 
   const btnDisabled = disabled || loading;
 
@@ -47,10 +54,14 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
   const sizeClassName = `button-${buttonSize}`;
 
   const shapeClassName = `button-${buttonShape}`;
+  
+  const textClassName = text ? "button-text" : "";
 
   const disabledClassName = disabled ? "button-disabled" : "";
 
   const loadingClassName = loading ? "button-loading" : "";
+
+  const themeClassName = `button-${theme}`;
 
   const colorClassName = () => {
     if (!ghost && !buttonColor) return "";
@@ -66,6 +77,8 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
     shapeClassName,
     colorClassName(),
     loadingClassName,
+    textClassName,
+    themeClassName,
     disabledClassName,
     rootClassName
   );

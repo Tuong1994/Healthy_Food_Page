@@ -1,4 +1,10 @@
 const options_vn = {
+  sort: {
+    newest: "Mới nhất",
+    oldest: "Cũ nhất",
+    priceGoUp: "Giá từ thấp đến cao",
+    priceGoDown: "Giá từ cao đến thấp",
+  },
   gender: {
     male: "Nam",
     female: "Nữ",

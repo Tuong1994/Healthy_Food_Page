@@ -13,11 +13,11 @@
     box-shadow: 0 0 10px $bg-gray;
     border-radius: $rounded;
     overflow: hidden;
-    opacity: 0;
     position: absolute;
-    top: 100%;
+    opacity: 0;
+    top: calc(100% - 5px);
     z-index: 5;
-    transition: opacity $transition-time-sm $transition-fn;
+    transition: all $transition-time-xs $transition-fn;
     .wrap-item {
       padding: $p-1 - 0.4 $p-2;
       cursor: pointer;
@@ -28,8 +28,9 @@
     }
   }
   .dropdown-wrap-active {
+    top: 100%;
     opacity: 1;
-    animation: fade $transition-time-sm $transition-fn;
+    animation: slideDown $transition-time-xs $transition-fn;
   }
 }
 
@@ -57,5 +58,16 @@
   .dropdown-wrap {
     background: $bg-deep-blue;
     box-shadow: 0 0 10px $bg-black;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    top: calc(100% - 5px);
+    opacity: 0;
+  }
+  to {
+    top: 100%;
+    opacity: 1;
   }
 }

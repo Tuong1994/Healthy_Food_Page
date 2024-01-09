@@ -7,6 +7,7 @@ import { useLang } from "@/hooks";
 import Link from "next/link";
 import ProductCard from "@/components/Page/ProductCard";
 import url from "@/common/constant/url";
+import ProductsFilter from "./ProductsFilter";
 
 const { HOME } = url;
 
@@ -27,9 +28,16 @@ const Products: NextPage = () => {
   return (
     <div className="page product-list">
       <Breadcrumb items={items} />
-      <Title level={4} weight={600}>
-        Category
-      </Title>
+      <Row justify="between">
+        <Col>
+          <Title level={4} weight={600}>
+            Category
+          </Title>
+        </Col>
+        <Col>
+          <ProductsFilter lang={lang} />
+        </Col>
+      </Row>
       <Card rootClassName="list-wrap" bodyClassName="wrap-body">
         <Row justify="between" gutters={[14]}>
           {[...Array(40)].map((_, idx) => (

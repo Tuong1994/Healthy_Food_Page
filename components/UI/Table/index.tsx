@@ -1,11 +1,16 @@
+"use client";
+
 import React from "react";
-import { ButtonProps } from "../Button";
-import { ComponentColor } from "@/common/type";
-import { Columns } from "./type";
+import type { ButtonProps } from "../Button";
+import type { ComponentColor } from "@/common/type";
+import type { Columns } from "./type";
+import { useLang } from "@/hooks";
+import Pagination, { PaginationProps } from "../Pagination";
 import TableHead from "./TableHead";
 import TableBody from "./TableBody";
 import TableEmpty from "./TableEmpty";
 import TableLoading from "./TableLoading";
+import TableFilter from "./TableFilter";
 import useLayout from "../Layout/useLayout";
 import utils from "@/utils";
 
@@ -21,11 +26,18 @@ export interface TableProps<M> extends React.TableHTMLAttributes<HTMLTableElemen
   loading?: boolean;
   hasRowSelection?: boolean;
   hasRowExpand?: boolean;
+  hasPagination?: boolean;
+  hasFilter?: boolean;
   removeButtonTitle?: React.ReactNode | React.ReactNode[];
   cancelButtonTitle?: React.ReactNode | React.ReactNode[];
+  filter?: React.ReactNode | React.ReactNode[];
   removeButtonProps?: ButtonProps;
   cancelButtonProps?: ButtonProps;
+  paginationProps?: PaginationProps;
+  onFilter?: () => void;
+  onCancelFilter?: () => void;
   onSelectRows?: (keys: React.Key[]) => void;
+  onChangePage?: (page: number) => void;
   expandRowTable?: (data: M) => React.ReactNode | null;
 }
 
@@ -40,21 +52,39 @@ const Table = <M extends object>(
     loading,
     hasRowSelection = false,
     hasRowExpand = false,
+    hasPagination = false,
+    hasFilter = false,
     removeButtonTitle = "Remove",
     cancelButtonTitle = "Cancel",
     removeButtonProps,
     cancelButtonProps,
+    paginationProps,
+    filter,
+    onFilter,
+    onCancelFilter,
     onSelectRows,
+    onChangePage,
     expandRowTable,
     ...restProps
   }: TableProps<M>,
   ref: React.ForwardedRef<HTMLTableElement>
 ) => {
+  const { lang } = useLang();
+
   const { layoutValue } = useLayout();
 
   const { layoutTheme: theme } = layoutValue;
 
   const [rowSelectedKeys, setRowSelectedKeys] = React.useState<React.Key[]>([]);
+
+  const paginationDefaultProps: PaginationProps = {
+    color,
+    showContent: true,
+    shape: "square",
+    rootClassName: "table-pagination",
+    onChangePage,
+    ...paginationProps,
+  };
 
   const colorClassName = `table-${color}`;
 
@@ -79,44 +109,56 @@ const Table = <M extends object>(
   const handleCancelSelect = () => setRowSelectedKeys([]);
 
   return (
-    <div style={style} className={mainClassName}>
-      <div className="table-content">
-        <table ref={ref} {...restProps}>
-          <TableHead<M>
-            columns={columns}
-            totalRows={dataSource.length}
-            rowSelectedKeys={rowSelectedKeys}
-            hasRowExpand={hasRowExpand}
-            hasRowSelection={hasRowSelection}
-            removeButtonTitle={removeButtonTitle}
-            cancelButtonTitle={cancelButtonTitle}
-            removeButtonProps={removeButtonProps}
-            cancelButtonProps={cancelButtonProps}
-            onSelectRow={onSelectRows}
-            handleSelectAllRow={handleSelectAllRow}
-            handleCancelSelect={handleCancelSelect}
+    <React.Fragment>
+      <div style={style} className={mainClassName}>
+        {hasFilter && (
+          <TableFilter
+            lang={lang}
+            color={color}
+            filter={filter}
+            onFilter={onFilter}
+            onCancelFilter={onCancelFilter}
           />
-
-          {dataSource.length > 0 && (
-            <TableBody<M>
-              rowKey={rowKey}
-              dataSource={dataSource}
+        )}
+        <div className="table-content">
+          <table ref={ref} {...restProps}>
+            <TableHead<M>
               columns={columns}
-              color={color}
+              totalRows={dataSource.length}
               rowSelectedKeys={rowSelectedKeys}
               hasRowExpand={hasRowExpand}
               hasRowSelection={hasRowSelection}
-              handleSelectRow={handleSelectRow}
-              expandRowTable={expandRowTable}
+              removeButtonTitle={removeButtonTitle}
+              cancelButtonTitle={cancelButtonTitle}
+              removeButtonProps={removeButtonProps}
+              cancelButtonProps={cancelButtonProps}
+              onSelectRow={onSelectRows}
+              handleSelectAllRow={handleSelectAllRow}
+              handleCancelSelect={handleCancelSelect}
             />
-          )}
-        </table>
 
-        {dataSource.length === 0 && <TableEmpty />}
+            {dataSource.length > 0 && (
+              <TableBody<M>
+                rowKey={rowKey}
+                dataSource={dataSource}
+                columns={columns}
+                color={color}
+                rowSelectedKeys={rowSelectedKeys}
+                hasRowExpand={hasRowExpand}
+                hasRowSelection={hasRowSelection}
+                handleSelectRow={handleSelectRow}
+                expandRowTable={expandRowTable}
+              />
+            )}
+          </table>
+
+          {dataSource.length === 0 && <TableEmpty />}
+        </div>
+
+        {loading && <TableLoading />}
       </div>
-
-      {loading && <TableLoading />}
-    </div>
+      {hasPagination && <Pagination {...paginationDefaultProps} />}
+    </React.Fragment>
   );
 };
 

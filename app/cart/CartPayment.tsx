@@ -6,8 +6,8 @@ import PaymentMethod from "./PaymentMethod";
 import PaymentReceived from "./PaymentReceived";
 import PaymentInfo from "./PaymentInfo";
 import PaymentActions from "./PaymentActions";
-import utils from "@/utils";
 import PurchasedModal from "./PurchasedModal";
+import utils from "@/utils";
 
 const { Table, Image, Pagination, Divider, Grid, Typography } = UI;
 

@@ -5,11 +5,12 @@ import useOverflow from "./features/useOverflow";
 import useRender from "./features/useRender";
 import useSelectOption from "./features/useSelectOption";
 import useLang from "./features/useLang";
+import useMounted from "./features/useMounted";
 import useNotDisplay from "./features/useNotDisplay";
 import useDisplayGender from "./data-display/useDisplayGender";
 import useDisplayOrderStatus from "./data-display/useDisplayOrderStatus";
-import useDisplayPaymentMethod from "./data-display/useDisplayPaymentMethod";
 import useDisplayPaymentStatus from "./data-display/useDisplayPaymentStatus";
+import useDisplayPaymentMethod from "./data-display/useDisplayPaymentMethod";
 
 export {
   useClickOutside,
@@ -19,9 +20,10 @@ export {
   useRender,
   useSelectOption,
   useLang,
+  useMounted,
   useNotDisplay,
   useDisplayGender,
   useDisplayOrderStatus,
-  useDisplayPaymentMethod,
   useDisplayPaymentStatus,
+  useDisplayPaymentMethod,
 };

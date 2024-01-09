@@ -11,8 +11,10 @@ const { Row, Col } = Grid;
 const { Paragraph } = Typography;
 
 export interface InfoRowProps extends GridRowProps {
-  label?: React.ReactNode;
-  text?: React.ReactNode;
+  label?: string;
+  labelElement?: React.ReactNode;
+  text?: string;
+  textElement?: React.ReactNode;
   labelProps?: ParagraphProps;
   textProps?: ParagraphProps;
   labelSpanProps?: GridColProps;
@@ -21,7 +23,18 @@ export interface InfoRowProps extends GridRowProps {
 }
 
 const InfoRow: React.ForwardRefRenderFunction<HTMLDivElement, InfoRowProps> = (
-  { label, text, labelProps, textProps, labelSpanProps, textSpanProps, hasColon = true, ...restProps },
+  {
+    label,
+    labelElement,
+    text,
+    textElement,
+    labelProps,
+    textProps,
+    labelSpanProps,
+    textSpanProps,
+    hasColon = true,
+    ...restProps
+  },
   ref
 ) => {
   const { layoutValue } = useLayout();
@@ -42,12 +55,16 @@ const InfoRow: React.ForwardRefRenderFunction<HTMLDivElement, InfoRowProps> = (
   return (
     <Row ref={ref} rootClassName={mainClassName} {...restProps}>
       <Col {...labelSpanDefaultProps}>
-        <Paragraph {...labelDefaultProps}>
-          {label} {hasColon ? ":" : ""}
-        </Paragraph>
+        {!labelElement && (
+          <Paragraph {...labelDefaultProps}>
+            {label} {hasColon ? ":" : ""}
+          </Paragraph>
+        )}
+        {labelElement}
       </Col>
       <Col {...textSpanDefaultProps}>
-        <Paragraph {...textDefaultProps}>{text}</Paragraph>
+        {!textElement && <Paragraph {...textDefaultProps}>{text}</Paragraph>}
+        {textElement}
       </Col>
     </Row>
   );

@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 import {
   HiOutlineChevronDoubleLeft as ArrowDoubleLeft,
@@ -10,6 +12,7 @@ import { GridAppContext } from "../Grid/Context";
 import usePagination from "./usePagination";
 import utils from "@/utils";
 import useLayout from "../Layout/useLayout";
+import { useMounted } from "@/hooks";
 
 export type PageType = "first" | "prev" | "page" | "next" | "last";
 
@@ -27,6 +30,7 @@ export interface PaginationProps {
   lastIcon?: React.ReactNode | React.ReactNode[];
   prevIcon?: React.ReactNode | React.ReactNode[];
   nextIcon?: React.ReactNode | React.ReactNode[];
+  onChangePage?: (page: number) => void;
 }
 
 const Pagination: React.ForwardRefRenderFunction<HTMLDivElement, PaginationProps> = (
@@ -44,6 +48,7 @@ const Pagination: React.ForwardRefRenderFunction<HTMLDivElement, PaginationProps
     lastIcon = <ArrowDoubleRight />,
     prevIcon = <ArrowLeft />,
     nextIcon = <ArrowRight />,
+    onChangePage,
   },
   ref
 ) => {
@@ -52,6 +57,8 @@ const Pagination: React.ForwardRefRenderFunction<HTMLDivElement, PaginationProps
   const { layoutValue } = useLayout();
 
   const { layoutTheme: theme } = layoutValue;
+  
+  const isMounted = useMounted()
 
   const [currentPage, setCurrentPage] = React.useState<number>(1);
 
@@ -92,6 +99,8 @@ const Pagination: React.ForwardRefRenderFunction<HTMLDivElement, PaginationProps
   const leftActionsClassName = utils.formatClassName("actions-button", leftArrowDisabledClassName);
 
   const rightActionsClassName = utils.formatClassName("actions-button", rightArrowDisabledClassName);
+
+  React.useEffect(() => onChangePage?.(currentPage), [currentPage]);
 
   const renderPageButtons = () => {
     if (simple || isPhone)
@@ -156,6 +165,8 @@ const Pagination: React.ForwardRefRenderFunction<HTMLDivElement, PaginationProps
       }
     }
   };
+
+  if(!isMounted) return null
 
   return (
     <div ref={ref} style={style} className={mainClassName}>

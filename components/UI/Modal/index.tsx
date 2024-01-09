@@ -5,6 +5,7 @@ import { useOverflow, useRender } from "@/hooks";
 import { useLang } from "@/hooks";
 import Portal from "@/components/Portal";
 import Button, { ButtonProps } from "../Button";
+import useLayout from "../Layout/useLayout";
 import utils from "@/utils";
 
 export interface ModalProps {
@@ -65,6 +66,10 @@ const Modal: React.ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (
 
   const render = useRender(open);
 
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
   const { lang } = useLang();
 
   const modalRef = React.useRef<HTMLDivElement>(null);
@@ -74,6 +79,8 @@ const Modal: React.ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (
   const sizeClassName = `modal-${sizes}`;
 
   const colorClassName = `modal-${color}`;
+
+  const themeClassName = `modal-${theme}`;
 
   const backdropActiveClassName = open ? "modal-backdrop-active" : "";
 
@@ -85,6 +92,7 @@ const Modal: React.ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (
     "modal",
     colorClassName,
     sizeClassName,
+    themeClassName,
     modalActiveClassName,
     rootClassName
   );
@@ -104,6 +112,7 @@ const Modal: React.ForwardRefRenderFunction<HTMLDivElement, ModalProps> = (
   React.useEffect(() => {
     if (!document) return;
     const modals = document.querySelectorAll(".modal-active");
+    if (modals.length === 1) return;
     if (modalRef.current !== null && modalBackdropRef.current !== null) {
       const modalzIndex = 35 + modals.length;
       const backdropszIndex = 34 + modals.length;

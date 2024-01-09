@@ -12,14 +12,14 @@
 }
 
 .content-resize {
-  margin-left: 25rem;
+ padding-left: 25rem;
   @include respond(mdTablet) {
-    margin-left: 0;
+   padding-left: 0;
   }
 }
 
 .content-shrinked {
-  margin-left: 6rem;
+ padding-left: 6rem;
 }
 
 .content-dark {

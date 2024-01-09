@@ -7,7 +7,7 @@
   z-index: 15;
   .header-top {
     background: $bg-green;
-    padding: $p-1 - 0.5 $p-1 * 8;
+    padding: 0 $p-1 * 8;
     .top-about,
     .top-contact {
       color: $text-white;

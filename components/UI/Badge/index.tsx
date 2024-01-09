@@ -2,6 +2,7 @@
 
 import React from "react";
 import { ComponentColor, ComponentShape } from "@/common/type";
+import useLayout from "../Layout/useLayout";
 import utils from "@/utils";
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -16,7 +17,13 @@ const Badge: React.ForwardRefRenderFunction<HTMLDivElement, BadgeProps> = (
   { rootClassName = "", ghost, color, shape = "round", children, ...restProps },
   ref
 ) => {
+  const { layoutValue } = useLayout();
+
+  const { layoutTheme: theme } = layoutValue;
+
   const shapeClassName = `badge-${shape}`;
+
+  const themeClassName = `badge-${theme}`;
 
   const colorClassName = () => {
     if (ghost && !color) return "badge-ghost";
@@ -25,7 +32,13 @@ const Badge: React.ForwardRefRenderFunction<HTMLDivElement, BadgeProps> = (
     return "";
   };
 
-  const className = utils.formatClassName("badge", colorClassName(), shapeClassName, rootClassName);
+  const className = utils.formatClassName(
+    "badge",
+    colorClassName(),
+    shapeClassName,
+    themeClassName,
+    rootClassName
+  );
 
   return (
     <div ref={ref} {...restProps} className={className}>
